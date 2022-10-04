@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://use.typekit.net/ine8tgt.css");
+
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.black-our{
+  color: #212426;
+}

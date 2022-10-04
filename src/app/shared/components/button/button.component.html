@@ -1,0 +1,13 @@
+<button
+  class="h-full w-full bg-[#ff4081] text-sm sm:text-lg text-white open-sans font-bold outline-none"
+  [ngStyle]="{
+    width: width,
+    height: height,
+    borderRadius: rounded,
+    backgroundColor: backgroundColor,
+    color: color
+  }"
+  [type]="type"
+>
+  <ng-content></ng-content>
+</button>

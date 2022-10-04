@@ -1,0 +1,35 @@
+<div
+  class="w-full h-[80px] bg-white rounded-b-lg drop-shadow-lg flex justify-between items-center z-40 fixed top-0 right-0"
+>
+  <div class="md:ml-[40px] ml-[30px]">
+    <a
+      class="cursor-pointer text-lg md:text-2xl black-our font-semibold"
+      routerLink="/home"
+      >Mardikor-bozor.tj</a
+    >
+  </div>
+  <div class="flex items-center">
+    <a class="sm:mr-6 mr-4 cursor-pointer">
+      <app-button
+        [routerLink]="isLoginPage ? '/auth/register' : '/auth/login'"
+        rounded="20px"
+        width="90px"
+        height="35px"
+        type="submit"
+        >{{ isLoginPage ? "Sing up" : "Sing in" }}</app-button
+      >
+    </a>
+    <!-- <a class="sm:mr-6 mr-4 cursor-pointer">
+      <img
+        class="sm:w-6 sm:h-6 h-4 w-4"
+        src="assets//icons/icon-profile.png"
+        routerLink="/"
+    /></a>
+    <a class="sm:mr-8 mr-6 cursor-pointer">
+      <img
+        class="sm:w-6 sm:h-6 h-4 w-4"
+        src="assets//icons/icon-settings.png"
+        routerLink="/"
+    /></a> -->
+  </div>
+</div>

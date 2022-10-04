@@ -1,0 +1,10 @@
+<swiper
+  [navigation]="isNavigation"
+  class="w-full"
+  [ngClass]="{ 'sm:w-full': isWidthFull, 'sm:w-[800px]': !isWidthFull }"
+  [config]="swiperConfig"
+>
+  <ng-template swiperSlide *ngFor="let img of images">
+    <img class="w-full" [src]="img" />
+  </ng-template>
+</swiper>

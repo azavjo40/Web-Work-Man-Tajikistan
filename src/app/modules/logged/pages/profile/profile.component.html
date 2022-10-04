@@ -1,0 +1,111 @@
+<div class="mt-20 flex bg-gray-23 flex-col pb-5">
+  <div
+    class="w-full h-[220px] md:h-[300px] flex flex-col justify-center"
+    [ngStyle]="{
+      background: 'linear-gradient(' + 'gray' + ' , ' + 'green' + ')'
+    }"
+  >
+    <div class="flex ml-6 md:ml-8">
+      <img
+        class="w-28 md:w-32 h-28 md:h-32 rounded-full cursor-pointer"
+        [src]="workerMan[0]?.avatar ? workerMan[0]?.avatar : avatar"
+        (click)="workerMan[0]?.avatar && modal.open()"
+      />
+      <div class="flex flex-col h-full justify-between py-7 md:py-5 ml-6">
+        <h1 class="text-2xl md:text-4xl text-white">
+          {{ workerMan[0]?.title }}
+        </h1>
+        <span class="text-base md:text-2xl text-white"
+          >{{ workerMan[0]?.country }} {{ workerMan[0]?.city }}</span
+        >
+      </div>
+    </div>
+
+    <app-modal #modal>
+      <img class="w-full h-full" [src]="workerMan[0]?.avatar" />
+    </app-modal>
+
+    <span
+      *ngIf="workerMan[0]?.price"
+      class="text-base md:text-2xl text-green-400 mt-3 md:mt-4 ml-8 md:ml-10"
+      >{{ workerMan[0]?.price }} СОМОН</span
+    >
+  </div>
+
+  <div
+    *ngIf="workerMan[0]?.skils?.length"
+    class="flex bg-white mt-5 rounded-md md:rounded-lg min-h-[300px] w-full flex-wrap justify-start p-8 md:p-10"
+  >
+    <h1 class="w-full text-xl md:text-4xl md:mb-3 black-our font-medium">
+      Tech stack
+    </h1>
+    <div class="w-[50%] flex flex-col" *ngFor="let item of workerMan[0]?.skils">
+      <h1 class="text-base md:text-2xl black-our font-medium">{{ item }}</h1>
+      <span class="text-gray-22 text-xs md:text-sm">asvanced</span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="workerMan[0]?.images"
+    class="flex bg-white mt-5 rounded-md md:rounded-lg md:min-h-[200px] w-full overflow-x-hidden p-5 md:p-10 flex-col justify-center"
+  >
+    <h1 class="w-full text-xl md:text-4xl md:mb-3 black-our font-medium">
+      Photo work {{ workerMan[0]?.images.length }}+
+    </h1>
+    <div class="flex justify-center items-center">
+      <img
+        class="h-full w-[30%] p-2 md:block hidden rounded-md md:rounded-lg"
+        *ngFor="let img of spliceImage(workerMan[0]?.images)"
+        [src]="img"
+        (click)="modalImages.open()"
+      />
+
+      <img
+        class="h-[200px] w-full p-2 block md:hidden rounded-md md:rounded-lg"
+        [src]="workerMan[0]?.images[0]"
+        (click)="modalImages.open()"
+      />
+    </div>
+  </div>
+
+  <app-modal #modalImages>
+    <app-swiper-example
+      [isNavigation]="true"
+      [images]="workerMan[0]?.images"
+    ></app-swiper-example>
+  </app-modal>
+
+  <div
+    *ngIf="workerMan[0]?.description"
+    class="flex bg-white mt-5 rounded-md md:rounded-lg min-h-[300px] w-full flex-wrap justify-start p-6 md:p-10"
+  >
+    <h1 class="w-full text-xl md:text-4xl md:mb-3 black-our font-medium">
+      Description
+    </h1>
+    <p class="text-sm md:text-lg">{{ workerMan[0]?.description }}</p>
+  </div>
+
+  <div
+    *ngIf="workerMan[0]?.contactUser?.name"
+    class="flex bg-white mt-5 rounded-md md:rounded-lg h-full w-full flex-wrap justify-start p-6 md:p-10"
+  >
+    <h1
+      class="w-full text-xl md:text-4xl md:mb-3 black-our font-medium h-full mb-4"
+    >
+      Contact user
+    </h1>
+    <div class="flex w-[50%]">
+      <h3 class="text-sm black-our md:text-xl">
+        {{ workerMan[0]?.contactUser?.name }}
+        {{ workerMan[0]?.contactUser?.lastName }}
+      </h3>
+    </div>
+    <div class="flex w-[50%]">
+      <a
+        class="text-sm black-our md:text-xl"
+        [href]="'tel:' + workerMan[0]?.contactUser?.phone"
+        >{{ workerMan[0]?.contactUser?.phone }}</a
+      >
+    </div>
+  </div>
+</div>
