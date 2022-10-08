@@ -1,0 +1,23 @@
+<div class="w-full px-2 py-4 bg-[rgba(0,0,0,.04)]">
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let chip of chips" (removed)="remove(chip)">
+      <div class="bg-white px-2 py-0.5 rounded-xl">{{ chip }}</div>
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <div>
+      <input
+        class="w-[60px]"
+        [placeholder]="placeholder"
+        #chipInput
+        [formControl]="chipCtrl"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addByEnter($event)"
+        (blur)="addByBlur($event)"
+      />
+      <app-button type="submit" rounded="20px">Add</app-button>
+    </div>
+  </mat-chip-list>
+</div>

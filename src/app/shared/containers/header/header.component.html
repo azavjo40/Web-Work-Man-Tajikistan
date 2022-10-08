@@ -9,27 +9,25 @@
     >
   </div>
   <div class="flex items-center">
-    <a class="sm:mr-6 mr-4 cursor-pointer">
-      <app-button
-        [routerLink]="isLoginPage ? '/auth/register' : '/auth/login'"
-        rounded="20px"
-        width="90px"
-        height="35px"
-        type="submit"
-        >{{ isLoginPage ? "Sing up" : "Sing in" }}</app-button
-      >
-    </a>
-    <!-- <a class="sm:mr-6 mr-4 cursor-pointer">
-      <img
-        class="sm:w-6 sm:h-6 h-4 w-4"
-        src="assets//icons/icon-profile.png"
-        routerLink="/"
-    /></a>
-    <a class="sm:mr-8 mr-6 cursor-pointer">
-      <img
-        class="sm:w-6 sm:h-6 h-4 w-4"
-        src="assets//icons/icon-settings.png"
-        routerLink="/"
-    /></a> -->
+    <ul
+      class="flex fmt-4 rounded-lg flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0"
+    >
+      <li>
+        <a
+          [routerLink]="isLoginPage ? '/auth/register' : '/auth/login'"
+          *ngIf="!isLogged"
+        >
+          {{ isLoginPage ? "Sing up" : "Sing in" }}
+        </a>
+      </li>
+      <li class="mr-3" (click)="logOut()">
+        <a class="sm:mr-6 mr-4 cursor-pointer" *ngIf="isLogged">Log out </a>
+      </li>
+      <li class="mr-3" *ngIf="isLogged">
+        <a class="sm:mr-6 mr-4 cursor-pointer" routerLink="/create-page-cv"
+          >Create cv
+        </a>
+      </li>
+    </ul>
   </div>
 </div>

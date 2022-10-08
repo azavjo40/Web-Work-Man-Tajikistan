@@ -6,6 +6,7 @@ import { AppRouter } from './app.router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainInterceptor } from './core/interceptors/main.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -14,6 +15,7 @@ import { MainInterceptor } from './core/interceptors/main.interceptor';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     SharedModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

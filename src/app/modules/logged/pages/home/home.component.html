@@ -1,4 +1,4 @@
-<div class="bg-gray-23 flex flex-col h-full w-full px-2 mt-20 pb-1 mf:pb-4">
+<div class="flex flex-col h-full w-full px-2 mt-20 pb-1 mf:pb-4">
   <div
     class="bg-white flex w-full h-20 md:h-28 mt-1 md:mt-1.5 justify-between rounded-md md:rounded-lg cursor-pointer"
     *ngFor="let item of workersMan"
@@ -19,7 +19,7 @@
       <div
         class="flex flex-col h-full justify-between py-3 md:py-5 black-our ml-6"
       >
-        <h1 class="text-lg md:text-2xl">{{ item?.title }}</h1>
+        <h1 class="text-lg font-semibold md:text-2xl">{{ item?.title }}</h1>
         <span class="text-sm md:text-lg text-green-400"
           >{{ item?.price }} СОМОН</span
         >
@@ -29,13 +29,10 @@
       class="flex flex-col h-full justify-between items-end py-3 md:py-5 mr-4"
     >
       <span
-        class="p-1 bg-gray-23 rounded-3xl w-[40px] md:rounded-full flex justify-center md:w-[60px] text-xs md:text-sm"
+        class="p-0.5 text-[#99A1AB] rounded-3xl bg-[#E4E8F0] w-[40px] md:rounded-full flex justify-center md:w-[55px] text-xs md:text-sm"
         >New</span
       >
-      <span class="md:text-lg text-sm flex black-our"
-        ><span class="md:text-lg text-sm hidden md:block mr-2 black-our">{{
-          item?.country
-        }}</span>
+      <span class="md:text-lg text-sm flex text-[#99A1AB]">
         {{ item?.city }}</span
       >
     </div>

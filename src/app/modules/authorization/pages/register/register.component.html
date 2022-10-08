@@ -1,9 +1,17 @@
-<div class="flex mt-40 justify-around items-center" [formGroup]="form">
+<div class="flex mt-36 justify-around items-center" [formGroup]="form">
   <div class="w-[80%] md:w-[40%] lg:w-[30%] h-full">
     <h1 class="sofia-pro text-[#262729] font-bold text-lg sm:text-[28px]">
       Register
     </h1>
     <div class="w-full mt-4 sm:mt-[32px]">
+      <app-input-text
+        formControlName="name"
+        height="48px"
+        placeholder="Name"
+        type="text"
+      ></app-input-text>
+    </div>
+    <div class="w-full mt-4 sm:mt-4 mb-2 sm:mb-4">
       <app-input-text
         formControlName="userName"
         height="48px"
@@ -18,22 +26,6 @@
         placeholder="Password"
         type="password"
       ></app-input-text>
-      <div class="w-full mt-4 sm:mt-4 mb-2 sm:mb-4">
-        <app-input-text
-          formControlName="name"
-          height="48px"
-          placeholder="Name"
-          type="text"
-        ></app-input-text>
-      </div>
-      <div class="w-full mt-4 sm:mt-4 mb-2 sm:mb-4">
-        <app-input-text
-          formControlName="lastName"
-          height="48px"
-          placeholder="Last name"
-          type="text"
-        ></app-input-text>
-      </div>
     </div>
     <!-- <a
       routerLink="/auth/login"

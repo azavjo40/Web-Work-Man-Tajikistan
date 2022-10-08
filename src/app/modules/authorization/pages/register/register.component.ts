@@ -14,7 +14,6 @@ export class RegisterComponent {
     userName: [null, [Validators.required]],
     password: [null, [Validators.required]],
     name: [null, [Validators.required]],
-    lastName: [null, [Validators.required]],
   });
 
   constructor(

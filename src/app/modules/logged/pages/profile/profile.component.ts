@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  public workerMan: Array<any> = [];
+  public workerMan: any = {}
   public avatar: string = 'assets/icons/avatar-user.png';
 
   constructor() {}
@@ -16,13 +16,11 @@ export class ProfileComponent implements OnInit {
   }
 
   public getWorkerMan() {
-    this.workerMan = [
-      {
+    this.workerMan  ={
         id: 'dsfs4',
         avatar:
           'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
         title: 'Junior developer',
-        country: 'Tajikistan',
         city: 'Dushanbe',
         price: 255,
         skils: [
@@ -42,7 +40,6 @@ export class ProfileComponent implements OnInit {
         contactUser: {
           phone: '+992888555676',
           name: 'Azam',
-          lastName: 'Sufiev',
         },
         images: [
           'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
@@ -54,8 +51,7 @@ export class ProfileComponent implements OnInit {
           'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
           'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
         ],
-      },
-    ];
+      }
   }
 
   public spliceImage(images: any) {

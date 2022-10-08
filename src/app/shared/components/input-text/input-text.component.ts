@@ -26,6 +26,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() height!: string;
   @Input() isBorder: boolean = false;
   @Input() bg!: string;
+  @Input() rounded!: string;
 
   private innerValue!: string;
 

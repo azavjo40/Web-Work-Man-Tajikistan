@@ -8,10 +8,5 @@ export class LoggedGuard implements CanActivate {
 
   public canActivate(): boolean {
     return true;
-    // const token: string = this.storageService.getToken();
-    // const user: any = this.storageService.getUser();
-    // if (token && user) return true;
-    // this.router.navigateByUrl('/authorization/login');
-    // return false;
   }
 }

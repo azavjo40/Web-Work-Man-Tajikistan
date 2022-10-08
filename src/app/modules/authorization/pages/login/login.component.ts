@@ -23,9 +23,10 @@ export class LoginComponent {
   ) {}
 
   public login() {
-    if (this.form.invalid) {
-      return this.form.markAllAsTouched();
-    }
+    if (this.form.invalid) return this.form.markAllAsTouched();
+    this.storageService.saveToken('dsnkjfhdsflkjdslkfjdskfjdsjf;lk');
     console.log(this.form.value);
+    this.form.reset();
+    this.router.navigate(['/home']);
   }
 }

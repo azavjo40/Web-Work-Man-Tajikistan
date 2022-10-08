@@ -1,0 +1,94 @@
+<div class="mt-40 flex flex-col pb-5 h-full items-center" [formGroup]="form">
+  <div
+    class="flex flex-col w-[98%] md:w-[70%] lg:w-[60%] bg-white rounded-2xl py-8 px-4"
+  >
+    <div class="flex justify-between md:flex-row">
+      <span>Title</span>
+      <span>City</span>
+    </div>
+
+    <div class="w-full flex justify-between md:flex-row">
+      <div class="mr-4">
+        <app-input-text
+          formControlName="title"
+          height="48px"
+          placeholder="title"
+          type="text"
+          bg="#EAEAEA"
+          rounded="6px"
+        ></app-input-text>
+      </div>
+
+      <input
+        formControlName="city"
+        list="ice-cream-flavors"
+        id="ice-cream-choice"
+        name="ice-cream-choice"
+        placeholder="City"
+        class="outline-none h-12 w-32 bg-[#EAEAEA] rounded-md p-3 cursor-pointer"
+      />
+      <datalist id="ice-cream-flavors">
+        <option value="Душанбе"></option>
+        <option value="Кулоб"></option>
+        <option value="Лелнобод"></option>
+        <option value="Strawberry"></option>
+        <option value="Vanilla"></option>
+      </datalist>
+    </div>
+    <span class="mt-4">Description</span>
+    <textarea
+      formControlName="description"
+      placeholder="Description"
+      class="resize-none outline-none h-40 bg-[#EAEAEA] rounded-md p-3"
+    ></textarea>
+
+    <span class="mt-4">skils</span>
+    <div class="h-full bg-[#EAEAEA] rounded-md p-3 flex">
+      <div class="w-full h-full">
+        <app-chips-autocomplete
+          placeholder="New skil and enter!"
+          (getChips)="getChips($event)"
+          [chipsArrays]="form.value?.skils"
+        >
+        </app-chips-autocomplete>
+      </div>
+    </div>
+    <span class="mt-4">Work photo</span>
+    <div class="h-32 bg-[#EAEAEA] rounded-md p-3 relative flex justify-between">
+      <div class="flex items-center overflow-x-auto w-[80%] md:w-[85%]">
+        <img
+          class="w-20 h-20 ml-2 cursor-pointer"
+          *ngFor="let item of form?.value?.images"
+          [src]="item"
+          (click)="modalImages.open()"
+        />
+      </div>
+      <label
+        class="w-12 md:w-20 h-full flex items-center absolute right-3 md:right-5 cursor-pointer z-10"
+      >
+        <img
+          class="w-12 md:w-20 h-12 md:h-20"
+          src="assets/icons/icon-add-image.png"
+        />
+        <input type="file" accept="image/*" class="hidden" />
+      </label>
+    </div>
+    <div class="mt-4 w-[150px] md:w-[200px] ml-auto">
+      <app-button
+        rounded="30px"
+        [isWidthFull]="true"
+        height="40px"
+        type="submit"
+        (click)="save()"
+        >Publish</app-button
+      >
+    </div>
+  </div>
+</div>
+
+<app-modal #modalImages>
+  <app-swiper-example
+    [isNavigation]="true"
+    [images]="form.value.images"
+  ></app-swiper-example>
+</app-modal>
