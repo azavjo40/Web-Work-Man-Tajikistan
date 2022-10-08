@@ -1,4 +1,4 @@
-<div class="mt-20 flex flex-col pb-5">
+<div class="mt-16 md:mt-20 flex flex-col pb-5">
   <div
     class="w-full h-[220px] md:h-[300px] flex flex-col justify-center"
     [ngStyle]="{
@@ -39,7 +39,7 @@
     <span
       *ngIf="workerMan?.price"
       class="text-base md:text-2xl text-green-400 mt-3 md:mt-4 ml-8 md:ml-10"
-      >{{ workerMan?.price }} СОМОН</span
+      >{{ workerMan?.contactUser?.name }}</span
     >
   </div>
 
@@ -106,7 +106,7 @@
     *ngIf="workerMan?.description"
     class="flex bg-white mt-5 rounded-md md:rounded-lg w-full flex-wrap justify-start p-6 md:p-10"
   >
-    <h1 class="w-full mb-3 text-xl font-medium text-gray-900 h-full mb-4">
+    <h1 class="w-full mb-3 text-xl font-medium text-gray-900 h-full">
       Description
     </h1>
     <p class="mb-5 text-sm font-medium text-gray-500 dark:text-gray-300">

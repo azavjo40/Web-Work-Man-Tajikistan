@@ -9,9 +9,9 @@ import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 export class PageCvComponent implements OnInit {
   public avatar: string = 'assets/icons/avatar-user.png';
 
-  public form: UntypedFormGroup = this.fb.group({
+  public form: any = this.fb.group({
     title: [null, [Validators.required]],
-    city: [null, [Validators.required]],
+    city: ['test', [Validators.required]],
     description: [null, [Validators.required]],
     skils: [null, [Validators.required]],
     images: [],

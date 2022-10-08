@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private subscription$: Subscription = new Subscription();
   public isLoginPage: boolean = true;
   public isLogged: boolean = false;
+  public isOpenMenuMobile: boolean = false;
+  public isOpenLanguage: boolean = false;
   constructor(private router: Router, private storageService: StorageService) {}
 
   ngOnInit(): void {

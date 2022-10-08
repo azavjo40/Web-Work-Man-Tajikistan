@@ -1,4 +1,4 @@
-<div class="flex flex-col h-full w-full px-2 mt-20 pb-1 mf:pb-4">
+<div class="flex flex-col h-full w-full px-2 mt-16 md:mt-20 pb-1 mf:pb-4">
   <div
     class="bg-white flex w-full h-20 md:h-28 mt-1 md:mt-1.5 justify-between rounded-md md:rounded-lg cursor-pointer"
     *ngFor="let item of workersMan"
@@ -19,10 +19,12 @@
       <div
         class="flex flex-col h-full justify-between py-3 md:py-5 black-our ml-6"
       >
-        <h1 class="text-lg font-semibold md:text-2xl">{{ item?.title }}</h1>
-        <span class="text-sm md:text-lg text-green-400"
-          >{{ item?.price }} СОМОН</span
-        >
+        <span class="mb-2 text-2xl font-normal tracking-tight black-our">{{
+          item?.title
+        }}</span>
+        <span class="text-sm md:text-lg text-green-400">{{
+          item?.contactUser?.name
+        }}</span>
       </div>
     </div>
     <div

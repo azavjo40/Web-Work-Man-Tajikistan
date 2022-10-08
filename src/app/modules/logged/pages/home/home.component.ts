@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
         contactUser: {
           phone: '+992888555676',
           name: 'Azam',
-          lastName: 'Sufiev',
         },
       },
       {
@@ -51,7 +50,6 @@ export class HomeComponent implements OnInit {
         contactUser: {
           phone: '+992888555676',
           name: 'Azam',
-          lastName: 'Sufiev',
         },
       },
       {
@@ -70,7 +68,6 @@ export class HomeComponent implements OnInit {
         contactUser: {
           phone: '+992888555676',
           name: 'Azam',
-          lastName: 'Sufiev',
         },
       },
       {
@@ -89,7 +86,6 @@ export class HomeComponent implements OnInit {
         contactUser: {
           phone: '+992888555676',
           name: 'Azam',
-          lastName: 'Sufiev',
         },
       },
       {
@@ -108,7 +104,6 @@ export class HomeComponent implements OnInit {
         contactUser: {
           phone: '+992888555676',
           name: 'Azam',
-          lastName: 'Sufiev',
         },
       },
       {
