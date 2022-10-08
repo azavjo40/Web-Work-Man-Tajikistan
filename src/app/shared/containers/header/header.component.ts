@@ -33,5 +33,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public logOut() {
     this.storageService.removeToken();
     this.isLogged = !!this.storageService.getToken();
+    this.router.navigate(['/quest/home']);
   }
 }

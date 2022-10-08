@@ -3,7 +3,7 @@
     class="bg-white flex w-full h-20 md:h-28 mt-1 md:mt-1.5 justify-between rounded-md md:rounded-lg cursor-pointer"
     *ngFor="let item of workersMan"
     [routerLink]="
-      '/profile/' +
+      '/guest/profile/' +
       item?.contactUser?.name +
       '-' +
       item?.contactUser?.lastName +

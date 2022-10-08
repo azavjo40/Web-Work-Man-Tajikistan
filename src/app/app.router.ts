@@ -13,12 +13,17 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: '',
+    path: 'logged',
     loadChildren: () =>
       import('./modules/logged/logged.module').then((m) => m.LoggedModule),
     canActivate: [LoggedGuard],
   },
-  { path: '**', redirectTo: 'home' },
+  {
+    path: 'guest',
+    loadChildren: () =>
+      import('./modules/quest/quest.module').then((m) => m.QuestModule),
+  },
+  { path: '**', redirectTo: 'guest/home' },
 ];
 
 @NgModule({

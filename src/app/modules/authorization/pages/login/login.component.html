@@ -1,8 +1,6 @@
 <div class="flex mt-36 justify-around items-center" [formGroup]="form">
   <div class="w-[80%] md:w-[40%] lg:w-[30%] h-full">
-    <h1 class="sofia-pro text-[#262729] font-bold text-lg sm:text-[28px]">
-      Login
-    </h1>
+    <h1 class="w-full mb-3 text-xl font-medium text-gray-900">Login</h1>
     <div class="w-full mt-4 sm:mt-[32px]">
       <app-input-text
         formControlName="userName"
@@ -19,11 +17,11 @@
         type="password"
       ></app-input-text>
     </div>
-    <!-- <a
+    <a
       routerLink="/auth/register"
       class="open-sans text-[#262729] cursor-pointer text-xs font-semibold sm:text-sm"
       >Sing up?</a
-    > -->
+    >
     <div class="sm:mt-8 mt-4 w-full">
       <app-button
         rounded="30px"

@@ -47,11 +47,12 @@
     *ngIf="workerMan?.skils?.length"
     class="flex bg-white mt-5 rounded-md md:rounded-lg w-full flex-wrap justify-start p-8 md:p-10"
   >
+    <h1 class="w-full mb-3 text-xl font-medium text-gray-900 h-full">Skils</h1>
     <ul
       class="mb-8 text-left text-gray-500 dark:text-gray-400 flex flex-wrap w-full"
     >
       <li
-        class="flex items-center space-y-3 w-[28%] md:w-[15%] m-2"
+        class="flex items-center space-y-3 w-[25%] md:w-[15%] m-2"
         *ngFor="let item of workerMan?.skils"
       >
         <!-- Icon -->

@@ -27,6 +27,6 @@ export class LoginComponent {
     this.storageService.saveToken('dsnkjfhdsflkjdslkfjdskfjdsjf;lk');
     console.log(this.form.value);
     this.form.reset();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/quest/home']);
   }
 }
