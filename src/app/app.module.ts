@@ -7,15 +7,23 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainInterceptor } from './core/interceptors/main.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HotToastModule } from '@ngneat/hot-toast';
+import { NgxsModule } from '@ngxs/store';
+import { AppState } from './stores/app/state';
+import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     CommonModule,
     AppRouter,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    HotToastModule.forRoot({ position: 'bottom-center' }),
     SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxsModule.forRoot([AppState], {
+      developmentMode: !environment.production,
+    }),
   ],
   providers: [
     {

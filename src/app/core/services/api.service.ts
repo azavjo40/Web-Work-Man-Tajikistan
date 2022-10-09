@@ -9,11 +9,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  public get(
-    path: string,
-    params?: Record<string, any>,
-    cashewOptions: ContextOptions = { cache: false }
-  ): Observable<any> {
+  public get(path: string, params?: Record<string, any>, cashewOptions: ContextOptions = { cache: false }): Observable<any> {
     return this.http.request('get', environment.apiUrl + path, {
       context: withCache(cashewOptions),
     });

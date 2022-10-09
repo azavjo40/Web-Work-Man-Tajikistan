@@ -11,22 +11,23 @@ import { AppService } from 'src/app/stores/app/service';
 })
 export class RegisterComponent {
   public form: UntypedFormGroup = this.fb.group({
-    userName: [null, [Validators.required]],
+    username: [null, [Validators.required]],
     password: [null, [Validators.required]],
     name: [null, [Validators.required]],
+    roles: [['user'], [Validators.required]],
   });
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private appService: AppService,
-    private storageService: StorageService
+    private appService: AppService
   ) {}
 
   public register() {
-    if (this.form.invalid) {
-      return this.form.markAllAsTouched();
-    }
-    console.log(this.form.value);
+    if (this.form.invalid) return this.form.markAllAsTouched();
+    this.appService.register(this.form.value).subscribe(() => {
+      this.form.reset();
+      this.router.navigate(['/quest/home']);
+    });
   }
 }

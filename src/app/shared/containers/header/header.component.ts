@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/core/services/storage.service';
+import { AppState } from 'src/app/stores/app/state';
 
 @Component({
   selector: 'app-header',
@@ -9,18 +11,21 @@ import { StorageService } from 'src/app/core/services/storage.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @Select(AppState) user$!: Observable<any>;
   private subscription$: Subscription = new Subscription();
   public isLoginPage: boolean = true;
   public isLogged: boolean = false;
   public isOpenMenuMobile: boolean = false;
   public isOpenLanguage: boolean = false;
+
   constructor(private router: Router, private storageService: StorageService) {}
 
   ngOnInit(): void {
-    this.isLogged = !!this.storageService.getToken();
+    this.subscription$.add(
+      this.user$.subscribe((item: any) => (this.isLogged = !!item?.user))
+    );
     this.subscription$.add(
       this.router.events.subscribe(() => {
-        this.isLogged = !!this.storageService.getToken();
         this.isLoginPage = this.router.url.includes('login');
       })
     );
@@ -31,8 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public logOut() {
-    this.storageService.removeToken();
-    this.isLogged = !!this.storageService.getToken();
+    this.storageService.logOut();
     this.router.navigate(['/quest/home']);
   }
 }
