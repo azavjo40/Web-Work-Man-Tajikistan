@@ -2,14 +2,7 @@
   <div
     class="bg-white flex w-full h-20 md:h-28 mt-1 md:mt-1.5 justify-between rounded-md md:rounded-lg cursor-pointer"
     *ngFor="let item of workersMan"
-    [routerLink]="
-      '/guest/profile/' +
-      item?.contactUser?.name +
-      '-' +
-      item?.contactUser?.lastName +
-      '-' +
-      item?.id
-    "
+    [routerLink]="'/guest/profile/' + item?.contactUser?.name + '-' + item?.id"
   >
     <div class="flex items-center ml-4">
       <img
