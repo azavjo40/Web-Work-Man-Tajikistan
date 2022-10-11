@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { AppService } from 'src/app/stores/app/service';
+import { AppState } from 'src/app/stores/app/state';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -6,52 +11,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  public workerMan: any = {}
+  public workerMan: any = {};
   public avatar: string = 'assets/icons/avatar-user.png';
+  public apiUrl: string = environment.apiUrl;
+  public user!: any;
 
-  constructor() {}
+  constructor(
+    private appService: AppService,
+    private route: ActivatedRoute,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
-    this.getWorkerMan();
+    this.user = this.store.selectSnapshot(AppState.user);
+    this.getadsById();
   }
 
-  public getWorkerMan() {
-    this.workerMan  ={
-        id: 'dsfs4',
-        avatar:
-          'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
-        title: 'Junior developer',
-        city: 'Dushanbe',
-        price: 255,
-        skils: [
-          'JavaScript',
-          'Angular',
-          'React',
-          'NodeJs',
-          'NestJs',
-          'SQL',
-          'Python',
-        ],
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ad natus sapiente molestiae mollitia ut totam optio alias exercitationem impedit minima
-        itaque cum distinctio debitis, necessitatibus ex repellat laudantium eos eligendi nobis ducimus ipsum voluptatum aliquam. Mollitia qui excepturi voluptates
-        ratione quae nulla dignissimos provident tenetur maxime, minus, earum veritatis quod eius labore animi illo quo dicta sequi recusandae. Impedit odio, illo
-        optio obcaecati reiciendis quo, dolorem pariatur repellendus esse possimus eos et similique voluptatem quam voluptatibus! Nam doloremque omnis mollitia
-        dolorum assumenda praesentium accusantium eum aperiam enim! Sequi facilis officiis explicabo deserunt fugit perferendis rem fuga in necessitatibus ea.`,
-        contactUser: {
-          phone: '+992888555676',
-          name: 'Azam',
-        },
-        images: [
-          'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
-          'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
-          'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
-          'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
-          'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
-          'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
-          'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
-          'https://api.time.com/wp-content/uploads/2019/08/better-smartphone-photos.jpg',
-        ],
-      }
+  public getadsById() {
+    this.appService
+      .getAdsById(this.route?.snapshot?.params['id'].split('-')[1])
+      .subscribe((item: any) => {
+        this.workerMan = item;
+      });
+  }
+
+  public uploadImage(event: any) {
+    this.appService
+      .createImageLink(event.target.files)
+      .subscribe((item: any) => {
+        this.appService.updateUserImage(item.url).subscribe();
+        this.getadsById();
+      });
   }
 
   public spliceImage(images: any) {

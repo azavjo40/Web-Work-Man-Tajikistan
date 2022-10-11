@@ -1,4 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import SwiperCore, { Navigation } from 'swiper';
 SwiperCore.use([Navigation]);
 
@@ -12,6 +13,7 @@ export class SwiperExampleComponent {
   @Input() images: any = [];
   @Input() isNavigation: boolean = false;
   @Input() isWidthFull: boolean = false;
+  public apiUrl: string = environment.apiUrl;
 
   public swiperConfig: any = {
     slidesPerView: 'auto',

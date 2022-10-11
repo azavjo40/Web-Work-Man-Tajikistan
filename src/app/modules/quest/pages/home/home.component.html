@@ -2,21 +2,21 @@
   <div
     class="bg-white flex w-full h-20 md:h-28 mt-1 md:mt-1.5 justify-between rounded-md md:rounded-lg cursor-pointer"
     *ngFor="let item of workersMan"
-    [routerLink]="'/guest/profile/' + item?.contactUser?.name + '-' + item?.id"
+    [routerLink]="'/guest/profile/' + item?.ads?.title + '-' + item?.ads?._id"
   >
     <div class="flex items-center ml-4">
       <img
         class="w-12 md:w-20 h-12 md:h-20 rounded-sm sm:rounded-md"
-        [src]="item?.avatar"
+        [src]="item?.user?.image ? apiUrl + '/' + item?.user?.image : avatar"
       />
       <div
         class="flex flex-col h-full justify-between py-3 md:py-5 black-our ml-6"
       >
         <span class="mb-2 text-2xl font-normal tracking-tight black-our">{{
-          item?.title
+          item?.ads?.title
         }}</span>
         <span class="text-sm md:text-lg text-green-400">{{
-          item?.contactUser?.name
+          item?.user?.name
         }}</span>
       </div>
     </div>
@@ -28,7 +28,7 @@
         >New</span
       >
       <span class="md:text-lg text-sm flex text-[#99A1AB]">
-        {{ item?.city }}</span
+        {{ item?.ads?.city }}</span
       >
     </div>
   </div>

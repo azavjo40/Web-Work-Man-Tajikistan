@@ -44,4 +44,38 @@ export class AppService {
       })
     );
   }
+
+  public updateUserImage(url: string): Observable<IOutPutUser> {
+    return this.apiService.put('/update/user', { image: url }).pipe(
+      tap((data: any) => {
+        this.getUser().subscribe();
+      })
+    );
+  }
+
+  public createImageLink(images: any): Observable<any> {
+    const formdata = new FormData();
+    formdata.append('image', images[0]);
+    return this.apiService.post('/upload', formdata);
+  }
+
+  public getAllAds(): Observable<IOutPutUser> {
+    return this.apiService.get('/ads');
+  }
+
+  public getAdsById(id: string, isUserId?: boolean): Observable<IOutPutUser> {
+    return this.apiService.get(`/ads/${isUserId ? 'user/' + id : id}`);
+  }
+
+  public postAds(data: any): Observable<IOutPutUser> {
+    return this.apiService.post('/ads', data);
+  }
+
+  public putAds(data: any): Observable<IOutPutUser> {
+    return this.apiService.put('/ads', data);
+  }
+
+  public deleteAds(): Observable<IOutPutUser> {
+    return this.apiService.delete('/ads');
+  }
 }

@@ -9,42 +9,55 @@
       <div class="flex relative">
         <img
           class="w-24 md:w-32 h-24 md:h-32 rounded-full cursor-pointer"
-          [src]="workerMan?.avatar ? workerMan?.avatar : avatar"
-          (click)="workerMan?.avatar && modal.open()"
+          [src]="
+            workerMan?.user?.image
+              ? apiUrl + '/' + workerMan?.user?.image
+              : avatar
+          "
+          (click)="workerMan?.user?.image && modalAvatar.open()"
         />
         <label
+          *ngIf="user?._id == workerMan?.user?._id"
           class="w-12 h-12 rounded-full absolute -right-5 md:-right-3 top-8 md:top-10 cursor-pointer z-10"
         >
           <img
             class="w-10 md:w-12 h-10 md:h-12 rounded-full"
             src="assets/icons/icon-download-profile-image.png"
           />
-          <input type="file" accept="image/*" class="hidden" />
+          <input
+            (change)="uploadImage($event)"
+            type="file"
+            accept="image/*"
+            class="hidden"
+          />
         </label>
       </div>
       <div class="flex flex-col h-full justify-between py-7 md:py-5 ml-6">
         <h1 class="text-2xl md:text-4xl text-white">
-          {{ workerMan?.title }}
+          {{ workerMan?.ads?.title }}
         </h1>
         <span class="text-base md:text-2xl text-white">{{
-          workerMan?.city
+          workerMan?.ads?.city
         }}</span>
       </div>
     </div>
 
-    <app-modal #modal>
-      <img class="w-full h-full" [src]="workerMan?.avatar" />
+    <app-modal #modalAvatar>
+      <img
+        class="w-full h-full"
+        [src]="apiUrl + '/' + workerMan?.user?.image"
+      />
     </app-modal>
 
     <span
       *ngIf="workerMan?.price"
       class="text-base md:text-2xl text-green-400 md:mt-4 ml-8 md:ml-10"
-      >{{ workerMan?.contactUser?.name }}</span
+      >{{ workerMan?.user?.name }}</span
     >
   </div>
 
   <div
-    *ngIf="workerMan?.skils?.length"
+    *ngIf="workerMan?.ads?.skils?.length"
     class="flex bg-white mt-5 rounded-md md:rounded-lg w-full flex-wrap justify-start p-8 md:p-10"
   >
     <h1 class="w-full mb-3 text-xl font-medium text-gray-900 h-full">Skils</h1>
@@ -53,7 +66,7 @@
     >
       <li
         class="flex items-center space-y-3 w-[25%] md:w-[15%] m-2"
-        *ngFor="let item of workerMan?.skils"
+        *ngFor="let item of workerMan?.ads?.skils"
       >
         <!-- Icon -->
         <svg
@@ -74,23 +87,23 @@
   </div>
 
   <div
-    *ngIf="workerMan?.images.length"
+    *ngIf="workerMan?.ads?.images.length"
     class="flex bg-white mt-5 rounded-md md:rounded-lg md:min-h-[200px] w-full overflow-x-hidden p-5 md:p-10 flex-col justify-center"
   >
     <h1 class="w-full mb-3 text-xl font-medium text-gray-900 dark:text-white">
-      Photo work {{ workerMan?.images.length }}+
+      Photo work {{ workerMan?.ads?.images.length }}+
     </h1>
     <div class="flex justify-center items-center">
       <img
         class="h-full w-[30%] p-2 md:block hidden rounded-md md:rounded-lg"
-        *ngFor="let img of spliceImage(workerMan?.images)"
-        [src]="img"
+        *ngFor="let img of spliceImage(workerMan?.ads?.images)"
+        [src]="apiUrl + '/' + img"
         (click)="modalImages.open()"
       />
 
       <img
         class="h-[200px] w-full p-2 block md:hidden rounded-md md:rounded-lg"
-        [src]="workerMan?.images[0]"
+        [src]="apiUrl + '/' + workerMan?.ads?.images[0]"
         (click)="modalImages.open()"
       />
     </div>
@@ -99,33 +112,31 @@
   <app-modal #modalImages>
     <app-swiper-example
       [isNavigation]="true"
-      [images]="workerMan?.images"
+      [images]="workerMan?.ads?.images"
     ></app-swiper-example>
   </app-modal>
 
   <div
-    *ngIf="workerMan?.description"
+    *ngIf="workerMan?.ads?.description"
     class="flex bg-white mt-5 rounded-md md:rounded-lg w-full flex-wrap justify-start p-6 md:p-10"
   >
     <h1 class="w-full mb-3 text-xl font-medium text-gray-900 h-full">
       Description
     </h1>
     <p class="mb-5 text-sm font-medium text-gray-500 dark:text-gray-300">
-      {{ workerMan?.description }}
+      {{ workerMan?.ads?.description }}
     </p>
   </div>
   <div class="fixed bottom-5 right-0 w-full flex justify-end">
     <a
-      [href]="'tel:' + workerMan?.contactUser?.phone"
+      [href]="'tel:' + workerMan?.user?.phone"
       class="text-white mr-7 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
     >
       Call
     </a>
     <a
       [href]="
-        'https://wa.me/' +
-        workerMan?.contactUser?.phone +
-        '?text=Ассаламу Аллейкум'
+        'https://wa.me/' + workerMan?.user?.phone + '?text=Ассаламу Аллейкум'
       "
       class="text-white mr-7 bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
     >

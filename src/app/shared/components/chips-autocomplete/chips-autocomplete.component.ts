@@ -1,8 +1,17 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, ViewChild, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnDestroy,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
@@ -10,26 +19,39 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./chips-autocomplete.component.scss'],
   templateUrl: './chips-autocomplete.component.html',
 })
-export class ChipsAutocomplete implements OnInit {
+export class ChipsAutocomplete implements OnInit, OnDestroy {
   @Input() placeholder: string = 'New chip...';
   @Output() getChips: EventEmitter<any> = new EventEmitter();
   @ViewChild('fruitInput') chipInput!: ElementRef<HTMLInputElement>;
-  @Input() chipsArrays: any = [];
+  @Input() chipsForm: any = [];
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public chipCtrl = new FormControl('');
   public filteredChips: Observable<string[]>;
   public chips: string[] = [];
   public allChips: string[] = [];
+  private subscription$: Subscription = new Subscription();
 
   constructor() {
     this.filteredChips = this.chipCtrl.valueChanges.pipe(
       startWith(null),
-      map((chip: string | null) => (chip ? this._filter(chip) : this.allChips.slice())),
+      map((chip: string | null) =>
+        chip ? this._filter(chip) : this.allChips.slice()
+      )
     );
   }
 
   ngOnInit(): void {
-    this.chips = this.chipsArrays?.length ? this.chipsArrays : [];
+    const values = this.chipsForm.value?.skils;
+    this.subscription$.add(
+      this.chipsForm.valueChanges.subscribe((item: any) => {
+        this.chips = item.skils?.length ? item.skils : [];
+      })
+    );
+    this.chips = values?.length ? values : [];
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 
   public addByBlur(event: any) {
@@ -69,6 +91,8 @@ export class ChipsAutocomplete implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.allChips.filter((chip) => chip.toLowerCase().includes(filterValue));
+    return this.allChips.filter((chip) =>
+      chip.toLowerCase().includes(filterValue)
+    );
   }
 }

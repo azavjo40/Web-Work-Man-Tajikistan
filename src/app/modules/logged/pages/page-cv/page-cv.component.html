@@ -25,11 +25,11 @@
       <select
         id="city"
         class="outline-none h-12 bg-[#EAEAEA] rounded-md p-3 text-gray-900 text-sm"
+        formControlName="city"
       >
-        <option ngValue="US">United States</option>
-        <option ngValue="CA">Canada</option>
-        <option ngValue="FR">France</option>
-        <option ngValue="DE">Germany</option>
+        <option ngValue="Душанбе">Душанбе</option>
+        <option ngValue="Кулоб">Кулоб</option>
+        <option ngValue="Лелнобод">Лелнобод</option>
       </select>
     </div>
     <span class="mt-4">Description</span>
@@ -45,7 +45,7 @@
         <app-chips-autocomplete
           placeholder="New skil and enter!"
           (getChips)="getChips($event)"
-          [chipsArrays]="form.value?.skils"
+          [chipsForm]="form"
         >
         </app-chips-autocomplete>
       </div>
@@ -56,7 +56,7 @@
         <img
           class="w-20 h-20 ml-2 cursor-pointer"
           *ngFor="let item of form?.value?.images"
-          [src]="item"
+          [src]="apiUrl + '/' + item"
           (click)="modalImages.open()"
         />
       </div>
@@ -67,18 +67,43 @@
           class="w-12 md:w-20 h-12 md:h-20"
           src="assets/icons/icon-add-image.png"
         />
-        <input type="file" accept="image/*" class="hidden" />
+        <input
+          type="file"
+          accept="image/*"
+          class="hidden"
+          (change)="uploadImage($event)"
+        />
       </label>
     </div>
-    <div class="mt-4 w-[150px] md:w-[200px] ml-auto">
-      <app-button
-        rounded="30px"
-        [isWidthFull]="true"
-        height="40px"
-        type="submit"
-        (click)="save()"
-        >Publish</app-button
+    <div class="flex items-end">
+      <label
+        for="red-toggle"
+        class="inline-flex relative items-center mr-5 cursor-pointer"
       >
+        <input
+          type="checkbox"
+          id="red-toggle"
+          class="sr-only peer"
+          checked
+          formControlName="isPublish"
+        />
+        <div
+          class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600"
+        ></div>
+        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >{{ !form.value.isPublish ? "Publish" : "Un publish" }} ?</span
+        >
+      </label>
+      <div class="mt-4 w-[150px] md:w-[200px] ml-auto">
+        <app-button
+          rounded="30px"
+          [isWidthFull]="true"
+          height="40px"
+          type="submit"
+          (click)="save()"
+          >Save</app-button
+        >
+      </div>
     </div>
   </div>
 </div>

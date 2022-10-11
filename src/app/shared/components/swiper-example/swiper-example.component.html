@@ -5,6 +5,6 @@
   [config]="swiperConfig"
 >
   <ng-template swiperSlide *ngFor="let img of images">
-    <img class="w-full" [src]="img" />
+    <img class="w-full" [src]="apiUrl + '/' + img" />
   </ng-template>
 </swiper>

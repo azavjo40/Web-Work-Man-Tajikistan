@@ -10,7 +10,6 @@ export class ModalComponent implements OnDestroy {
 
   public open(): void {
     this.isVisible = true;
-    console.log('open', this.isVisible);
   }
 
   public close(): void {
