@@ -50,7 +50,7 @@
     </app-modal>
 
     <span
-      *ngIf="workerMan?.price"
+      *ngIf="workerMan?.user?.name"
       class="text-base md:text-2xl text-green-400 md:mt-4 ml-8 md:ml-10"
       >{{ workerMan?.user?.name }}</span
     >
@@ -87,11 +87,11 @@
   </div>
 
   <div
-    *ngIf="workerMan?.ads?.images.length"
+    *ngIf="workerMan?.ads?.images?.length"
     class="flex bg-white mt-5 rounded-md md:rounded-lg md:min-h-[200px] w-full overflow-x-hidden p-5 md:p-10 flex-col justify-center"
   >
     <h1 class="w-full mb-3 text-xl font-medium text-gray-900 dark:text-white">
-      Photo work {{ workerMan?.ads?.images.length }}+
+      Photo work {{ workerMan?.ads?.images?.length }}+
     </h1>
     <div class="flex justify-center items-center">
       <img
@@ -129,14 +129,14 @@
   </div>
   <div class="fixed bottom-5 right-0 w-full flex justify-end">
     <a
-      [href]="'tel:' + workerMan?.user?.phone"
+      [href]="'tel:' + workerMan?.user?.username"
       class="text-white mr-7 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
     >
       Call
     </a>
     <a
       [href]="
-        'https://wa.me/' + workerMan?.user?.phone + '?text=Ассаламу Аллейкум'
+        'https://wa.me/' + workerMan?.user?.username + '?text=Ассаламу Аллейкум'
       "
       class="text-white mr-7 bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
     >

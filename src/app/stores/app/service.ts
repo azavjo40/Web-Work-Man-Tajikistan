@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { StorageService } from 'src/app/core/services/storage.service';
 import { Store } from '@ngxs/store';
 import { SetUser } from './actions';
-import { IOutPutAuth, IOutPutUser } from './types';
+import { IAdsApi, IOutPutAuth, IOutPutUser } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class AppService {
@@ -59,23 +59,23 @@ export class AppService {
     return this.apiService.post('/upload', formdata);
   }
 
-  public getAllAds(): Observable<IOutPutUser> {
+  public getAllAds(): Observable<Array<IAdsApi>> {
     return this.apiService.get('/ads');
   }
 
-  public getAdsById(id: string, isUserId?: boolean): Observable<IOutPutUser> {
+  public getAdsById(id: string, isUserId?: boolean): Observable<IAdsApi> {
     return this.apiService.get(`/ads/${isUserId ? 'user/' + id : id}`);
   }
 
-  public postAds(data: any): Observable<IOutPutUser> {
+  public postAds(data: any): Observable<any> {
     return this.apiService.post('/ads', data);
   }
 
-  public putAds(data: any): Observable<IOutPutUser> {
+  public putAds(data: any): Observable<any> {
     return this.apiService.put('/ads', data);
   }
 
-  public deleteAds(): Observable<IOutPutUser> {
+  public deleteAds(): Observable<any> {
     return this.apiService.delete('/ads');
   }
 }

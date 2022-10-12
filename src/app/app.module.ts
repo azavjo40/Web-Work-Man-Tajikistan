@@ -11,6 +11,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { NgxsModule } from '@ngxs/store';
 import { AppState } from './stores/app/state';
 import { environment } from 'src/environments/environment';
+import { I18nModule } from './i18n/i18n.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,6 +25,7 @@ import { environment } from 'src/environments/environment';
     NgxsModule.forRoot([AppState], {
       developmentMode: !environment.production,
     }),
+    I18nModule,
   ],
   providers: [
     {

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { AppService } from 'src/app/stores/app/service';
 import { AppState } from 'src/app/stores/app/state';
+import { IAdsApi } from 'src/app/stores/app/types';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,7 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  public workerMan: any = {};
+  public workerMan!: any;
   public avatar: string = 'assets/icons/avatar-user.png';
   public apiUrl: string = environment.apiUrl;
   public user!: any;
@@ -30,7 +31,7 @@ export class ProfileComponent implements OnInit {
   public getadsById() {
     this.appService
       .getAdsById(this.route?.snapshot?.params['id'].split('-')[1])
-      .subscribe((item: any) => {
+      .subscribe((item: IAdsApi) => {
         this.workerMan = item;
       });
   }

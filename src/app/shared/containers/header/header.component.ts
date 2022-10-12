@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
+import { TranslateService } from '@ngx-translate/core';
+import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/core/services/storage.service';
 import { AppState } from 'src/app/stores/app/state';
@@ -17,10 +18,30 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isLogged: boolean = false;
   public isOpenMenuMobile: boolean = false;
   public isOpenLanguage: boolean = false;
+  public language!: any;
+  public languageLists: any = { ru: 'Русский', en: 'English', tj: 'Тоҷикӣ' };
 
-  constructor(private router: Router, private storageService: StorageService) {}
+  constructor(
+    private router: Router,
+    private storageService: StorageService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
+    this.language = 'tj';
+    this.refreshHeader();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
+
+  public changeLanguage(lan: string) {
+    this.language = lan;
+    this.translate.use(lan);
+  }
+
+  public refreshHeader() {
     this.subscription$.add(
       this.user$.subscribe((item: any) => (this.isLogged = !!item?.user))
     );
@@ -29,10 +50,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isLoginPage = this.router.url.includes('login');
       })
     );
-  }
-
-  ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
   }
 
   public logOut() {

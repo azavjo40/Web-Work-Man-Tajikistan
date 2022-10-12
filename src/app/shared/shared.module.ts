@@ -16,6 +16,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { ChipsAutocomplete } from './components/chips-autocomplete/chips-autocomplete.component';
+import { I18nModule } from '../i18n/i18n.module';
 
 const components: any = [
   ButtonComponent,
@@ -26,7 +27,7 @@ const components: any = [
   InputTextComponent,
   InputErrorsComponent,
   LogoComponent,
-  ChipsAutocomplete
+  ChipsAutocomplete,
 ];
 
 const modals: any = [HeaderComponent];
@@ -46,6 +47,7 @@ const modules: any = [
   MatAutocompleteModule,
   MatIconModule,
   MatSelectModule,
+  I18nModule,
 ];
 
 @NgModule({

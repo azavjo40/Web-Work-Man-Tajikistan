@@ -11,12 +11,12 @@ import { AppState } from 'src/app/stores/app/state';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-page-cv',
-  templateUrl: './page-cv.component.html',
-  styleUrls: ['./page-cv.component.scss'],
+  selector: 'app-ads',
+  templateUrl: './ads.component.html',
+  styleUrls: ['./ads.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageCvComponent implements OnInit {
+export class AdsComponent implements OnInit {
   public apiUrl: string = environment.apiUrl;
   public user!: any;
   public userAds!: any;
@@ -36,6 +36,7 @@ export class PageCvComponent implements OnInit {
     private store: Store,
     private cdr: ChangeDetectorRef
   ) {}
+
   ngOnInit(): void {
     this.user = this.store.selectSnapshot(AppState.user);
     this.form.patchValue({ userId: this.user?._id });
