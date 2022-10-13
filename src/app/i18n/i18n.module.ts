@@ -7,6 +7,8 @@ import {
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from 'src/environments/environment';
+import { Store } from '@ngxs/store';
+import { AppState } from '../stores/app/state';
 
 @NgModule({
   imports: [
@@ -24,7 +26,6 @@ import { environment } from 'src/environments/environment';
 export class I18nModule {
   constructor(translate: TranslateService) {
     translate.addLangs(['en', 'ru', 'tj']);
-    translate.use('tj');
   }
 }
 

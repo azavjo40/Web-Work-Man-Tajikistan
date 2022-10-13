@@ -1,4 +1,10 @@
 {
-    "compA": "Component A works",
-    "compB": "Component B works"
-  }
+    "header":{
+      "title":"Mardikor-bozor",
+      "home":"Home",
+      "craeteAds":"Craete ads",
+      "logOut":"Log out",
+      "singIn":"Sing in"
+    }
+
+}

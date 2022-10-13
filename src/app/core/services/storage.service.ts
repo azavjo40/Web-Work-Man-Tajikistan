@@ -5,6 +5,7 @@ import { SetUser } from 'src/app/stores/app/actions';
 
 export const TOKEN = 'TOKEN';
 export const USER = 'USER';
+export const LANGUAGE = 'LANGUAGE';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
@@ -32,6 +33,14 @@ export class StorageService {
 
   public removeUser(): void {
     localStorage.removeItem(USER);
+  }
+
+  public saveLanguage(user: any): void {
+    localStorage.setItem(LANGUAGE, JSON.stringify(user));
+  }
+
+  public getLanguage(): any {
+    return JSON.parse(localStorage.getItem(LANGUAGE) as string);
   }
 
   public logOut(): void {

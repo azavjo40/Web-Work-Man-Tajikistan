@@ -10,7 +10,7 @@
       />
       <span
         class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-        >Mardikor-bozor</span
+        >{{ "header.title" | translate }}</span
       >
     </a>
     <div class="flex items-center md:order-2">
@@ -91,14 +91,14 @@
           <a
             routerLink="/quest/home"
             class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-            >Home
+            >{{ "header.home" | translate }}
           </a>
         </li>
         <li *ngIf="!isLogged && !isLoginPage" class="cursor-pointer">
           <a
             routerLink="/auth/login"
             class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-            >Sing in</a
+            >{{ "header.singIn" | translate }}</a
           >
         </li>
 
@@ -106,13 +106,13 @@
           <a
             routerLink="/logged/create/ads"
             class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-            >Create ads</a
+            >{{ "header.craeteAds" | translate }}</a
           >
         </li>
         <li *ngIf="isLogged" (click)="logOut()" class="cursor-pointer">
           <a
             class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-            >Log out</a
+            >{{ "header.logOut" | translate }}</a
           >
         </li>
       </ul>
