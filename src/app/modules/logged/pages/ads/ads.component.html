@@ -6,8 +6,8 @@
     class="flex flex-col w-[98%] md:w-[70%] lg:w-[60%] bg-white rounded-2xl py-8 px-4"
   >
     <div class="flex justify-between md:flex-row">
-      <span>Title</span>
-      <span>City</span>
+      <span>{{ "ads.title" | translate }}</span>
+      <span>{{ "ads.city" | translate }}</span>
     </div>
 
     <div class="w-full flex justify-between md:flex-row">
@@ -32,25 +32,25 @@
         <option ngValue="Лелнобод">Лелнобод</option>
       </select>
     </div>
-    <span class="mt-4">Description</span>
+    <span class="mt-4">{{ "ads.description" | translate }}</span>
     <textarea
       formControlName="description"
       placeholder="Description"
       class="resize-none outline-none h-40 bg-[#EAEAEA] rounded-md p-3"
     ></textarea>
 
-    <span class="mt-4">skils</span>
+    <span class="mt-4">{{ "ads.skills" | translate }}</span>
     <div class="h-full bg-[#EAEAEA] rounded-md p-3 flex">
       <div class="w-full h-full">
         <app-chips-autocomplete
-          placeholder="New skil and enter!"
+          [placeholder]="'ads.newSkil' | translate"
           (getChips)="getChips($event)"
           [chipsForm]="form"
         >
         </app-chips-autocomplete>
       </div>
     </div>
-    <span class="mt-4">Work photo</span>
+    <span class="mt-4">{{ "ads.workPhoto" | translate }}</span>
     <div class="h-32 bg-[#EAEAEA] rounded-md p-3 relative flex justify-between">
       <div class="flex items-center overflow-x-auto w-[80%] md:w-[85%]">
         <img
@@ -90,8 +90,17 @@
         <div
           class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600"
         ></div>
-        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >{{ !form.value.isPublish ? "Publish" : "Un publish" }} ?</span
+        <span
+          *ngIf="!form.value.isPublish"
+          class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >
+          {{ "ads.publish" | translate }} ?</span
+        >
+        <span
+          *ngIf="form.value.isPublish"
+          class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >
+          {{ "ads.unPublish" | translate }} ?</span
         >
       </label>
       <div class="mt-4 w-[150px] md:w-[200px] ml-auto">
@@ -101,7 +110,7 @@
           height="40px"
           type="submit"
           (click)="save()"
-          >Save</app-button
+          >{{ "ads.save" | translate }}</app-button
         >
       </div>
     </div>

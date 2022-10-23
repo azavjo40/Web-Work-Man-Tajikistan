@@ -5,6 +5,27 @@
       "craeteAds":"Craete ads",
       "logOut":"Log out",
       "singIn":"Sing in"
-    }
-
+    },
+   "ads":{
+    "title":"Title",
+    "city":"City",
+    "description":"Description",
+    "skills":"Skills",
+    "workPhoto":"Work photo",
+    "save":"Save",
+    "publish":"Publish",
+    "unPublish":"Un Publish",
+    "call":"Call",
+    "add":"Add",
+    "newSkil":"New skill and enter!"
+   },
+   "auth":{
+    "login":"Login",
+    "register":"Register",
+    "singUp":"Sing up",
+    "singIn":"Sing in",
+    "phone":"Phone",
+    "password":"Password",
+    "name":"Name"
+   }
 }

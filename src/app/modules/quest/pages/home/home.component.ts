@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { AppService } from 'src/app/stores/app/service';
+import { AppState } from 'src/app/stores/app/state';
 import { IAdsApi } from 'src/app/stores/app/types';
 import { environment } from 'src/environments/environment';
 
@@ -14,7 +17,11 @@ export class HomeComponent implements OnInit {
   public user!: any;
   public apiUrl: string = environment.apiUrl;
 
-  constructor(private appService: AppService) {}
+  constructor(
+    private appService: AppService,
+    private store: Store,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getAllAds();
@@ -24,5 +31,9 @@ export class HomeComponent implements OnInit {
     this.appService.getAllAds().subscribe((items: Array<IAdsApi>) => {
       this.workersMan = items;
     });
+  }
+
+  public goByUrl(url: string) {
+    this.router.navigateByUrl(url);
   }
 }

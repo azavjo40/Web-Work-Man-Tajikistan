@@ -1,11 +1,13 @@
 <div class="flex mt-36 justify-around items-center" [formGroup]="form">
   <div class="w-[80%] md:w-[40%] lg:w-[30%] h-full">
-    <h1 class="w-full mb-3 text-xl font-medium text-gray-900">Register</h1>
+    <h1 class="w-full mb-3 text-xl font-medium text-gray-900">
+      {{ "auth.register" | translate }}
+    </h1>
     <div class="w-full mt-4 sm:mt-[32px]">
       <app-input-text
         formControlName="name"
         height="48px"
-        placeholder="Name"
+        [placeholder]="'auth.name' | translate"
         type="text"
       ></app-input-text>
     </div>
@@ -13,7 +15,7 @@
       <app-input-text
         formControlName="username"
         height="48px"
-        placeholder="Phone"
+        [placeholder]="'auth.phone' | translate"
         type="text"
       ></app-input-text>
     </div>
@@ -21,14 +23,14 @@
       <app-input-text
         formControlName="password"
         height="48px"
-        placeholder="Password"
+        [placeholder]="'auth.password' | translate"
         type="password"
       ></app-input-text>
     </div>
     <a
-      routerLink="/auth/login"
+      [routerLink]="'/auth/login'"
       class="open-sans text-[#262729] cursor-pointer text-xs font-semibold sm:text-sm"
-      >Sing in?</a
+      >{{ "auth.singIn" | translate }}?</a
     >
     <div class="sm:mt-8 mt-4 w-full">
       <app-button
@@ -37,7 +39,7 @@
         height="40px"
         type="submit"
         (click)="register()"
-        >Register</app-button
+        >{{ "auth.register" | translate }}</app-button
       >
     </div>
   </div>

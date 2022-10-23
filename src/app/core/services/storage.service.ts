@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { SetUser } from 'src/app/stores/app/actions';
+import { AppState } from 'src/app/stores/app/state';
 
 export const TOKEN = 'TOKEN';
 export const USER = 'USER';
@@ -9,6 +10,7 @@ export const LANGUAGE = 'LANGUAGE';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
+  public language: any = this.store.selectSnapshot(AppState.language);
   constructor(private router: Router, private store: Store) {}
 
   public saveToken(token: string): void {

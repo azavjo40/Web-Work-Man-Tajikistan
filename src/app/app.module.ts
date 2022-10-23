@@ -11,7 +11,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { NgxsModule } from '@ngxs/store';
 import { AppState } from './stores/app/state';
 import { environment } from 'src/environments/environment';
-import { I18nModule } from './i18n/i18n.module';
+import { I18nModule } from './modules/i18n/i18n.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [

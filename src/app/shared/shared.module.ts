@@ -16,7 +16,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { ChipsAutocomplete } from './components/chips-autocomplete/chips-autocomplete.component';
-import { I18nModule } from '../i18n/i18n.module';
+import { I18nModule } from '../modules/i18n/i18n.module';
+import { SpliceImagePipe } from './pipes/spliceImage.pipe';
 
 const components: any = [
   ButtonComponent,
@@ -32,7 +33,7 @@ const components: any = [
 
 const modals: any = [HeaderComponent];
 
-const pipes: any = [];
+const pipes: any = [SpliceImagePipe];
 
 const directives: any = [];
 
@@ -53,6 +54,7 @@ const modules: any = [
 @NgModule({
   declarations: [components, modals, pipes, directives],
   imports: [modules],
+  providers: [pipes],
   exports: [modules, components, modals, pipes, directives],
 })
 export class SharedModule {}

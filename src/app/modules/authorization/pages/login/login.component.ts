@@ -24,7 +24,7 @@ export class LoginComponent {
     if (this.form.invalid) return this.form.markAllAsTouched();
     this.appService.login(this.form.value).subscribe(() => {
       this.form.reset();
-      this.router.navigate(['/quest/home']);
+      this.router.navigateByUrl('/guest/home');
     });
   }
 }

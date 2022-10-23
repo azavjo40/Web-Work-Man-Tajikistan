@@ -1,35 +1,43 @@
 <div class="flex flex-col h-full w-full px-2 mt-16 md:mt-20 pb-1 mf:pb-4">
-  <div
-    class="bg-white flex w-full h-20 md:h-28 mt-1 md:mt-1.5 justify-between rounded-md md:rounded-lg cursor-pointer"
-    *ngFor="let item of workersMan"
-    [routerLink]="'/guest/profile/' + item?.ads?.title + '-' + item?.ads?._id"
-  >
-    <div class="flex items-center ml-4">
-      <img
-        class="w-12 md:w-20 h-12 md:h-20 rounded-sm sm:rounded-md"
-        [src]="item?.user?.image ? apiUrl + '/' + item?.user?.image : avatar"
-      />
-      <div
-        class="flex flex-col h-full justify-between py-3 md:py-5 black-our ml-6"
-      >
-        <span class="mb-2 md:text-2xl font-normal tracking-tight black-our">{{
-          item?.ads?.title
-        }}</span>
-        <span class="text-sm md:text-lg text-green-400">{{
-          item?.user?.name
-        }}</span>
-      </div>
-    </div>
+  <div *ngFor="let item of workersMan">
     <div
-      class="flex flex-col h-full justify-between items-end py-3 md:py-5 mr-4"
+      class="bg-white flex w-full h-20 md:h-28 mt-1 md:mt-1.5 justify-between rounded-md md:rounded-lg cursor-pointer"
+      [routerLink]="
+        '/guest/profile/' +
+        item?.user?.name?.replace(' ', '-') +
+        '-' +
+        item?.ads?.title?.replace(' ', '-')
+      "
+      [queryParams]="{ profileId: item?.ads?._id }"
+      *ngIf="item?.ads?.isPublish"
     >
-      <span
-        class="p-0.5 text-[#99A1AB] rounded-3xl bg-[#E4E8F0] w-[40px] md:rounded-full flex justify-center md:w-[55px] text-xs md:text-sm"
-        >New</span
+      <div class="flex items-center ml-4">
+        <img
+          class="w-12 md:w-20 h-12 md:h-20 rounded-sm sm:rounded-md"
+          [src]="item?.user?.image ? apiUrl + '/' + item?.user?.image : avatar"
+        />
+        <div
+          class="flex flex-col h-full justify-between py-3 md:py-5 black-our ml-6"
+        >
+          <span class="mb-2 md:text-2xl font-normal tracking-tight black-our">{{
+            item?.ads?.title
+          }}</span>
+          <span class="text-sm md:text-lg text-green-400">{{
+            item?.user?.name
+          }}</span>
+        </div>
+      </div>
+      <div
+        class="flex flex-col h-full justify-between items-end py-3 md:py-5 mr-4"
       >
-      <span class="md:text-lg text-sm flex text-[#99A1AB]">
-        {{ item?.ads?.city }}</span
-      >
+        <span
+          class="p-0.5 text-[#99A1AB] rounded-3xl bg-[#E4E8F0] w-[40px] md:rounded-full flex justify-center md:w-[55px] text-xs md:text-sm"
+          >New</span
+        >
+        <span class="md:text-lg text-sm flex text-[#99A1AB]">
+          {{ item?.ads?.city }}</span
+        >
+      </div>
     </div>
   </div>
 </div>

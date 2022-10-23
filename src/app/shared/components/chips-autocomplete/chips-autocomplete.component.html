@@ -17,7 +17,9 @@
         (matChipInputTokenEnd)="addByEnter($event)"
         (blur)="addByBlur($event)"
       />
-      <app-button type="submit" rounded="20px">Add</app-button>
+      <app-button type="submit" rounded="20px">{{
+        "ads.add" | translate
+      }}</app-button>
     </div>
   </mat-chip-list>
 </div>

@@ -1,11 +1,13 @@
 <div class="flex mt-36 justify-around items-center" [formGroup]="form">
   <div class="w-[80%] md:w-[40%] lg:w-[30%] h-full">
-    <h1 class="w-full mb-3 text-xl font-medium text-gray-900">Login</h1>
+    <h1 class="w-full mb-3 text-xl font-medium text-gray-900">
+      {{ "auth.login" | translate }}
+    </h1>
     <div class="w-full mt-4 sm:mt-[32px]">
       <app-input-text
         formControlName="username"
         height="48px"
-        placeholder="Phone"
+        [placeholder]="'auth.phone' | translate"
         type="text"
       ></app-input-text>
     </div>
@@ -13,14 +15,14 @@
       <app-input-text
         formControlName="password"
         height="48px"
-        placeholder="Password"
+        [placeholder]="'auth.password' | translate"
         type="password"
       ></app-input-text>
     </div>
     <a
-      routerLink="/auth/register"
+      [routerLink]="'/auth/register'"
       class="open-sans text-[#262729] cursor-pointer text-xs font-semibold sm:text-sm"
-      >Sing up?</a
+      >{{ "auth.singIn" | translate }}?</a
     >
     <div class="sm:mt-8 mt-4 w-full">
       <app-button
@@ -29,7 +31,7 @@
         height="40px"
         type="submit"
         (click)="login()"
-        >Login</app-button
+        >{{ "auth.login" | translate }}</app-button
       >
     </div>
   </div>

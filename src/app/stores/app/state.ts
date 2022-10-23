@@ -37,6 +37,7 @@ export class AppState implements NgxsOnInit {
 
   @Action(SetLanguage)
   public SetLanguage(ctx: StateContext<any>, action: SetLanguage): void {
+    this.storageService.saveLanguage(action.language);
     ctx.patchState({ language: action.language });
   }
 }

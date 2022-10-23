@@ -2,7 +2,7 @@
   class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 fixed z-50 w-full"
 >
   <div class="container flex flex-wrap justify-end items-center mx-auto">
-    <a href="/home" class="flex items-center mr-auto">
+    <a [routerLink]="'/guest/home'" class="flex items-center mr-auto">
       <img
         src="https://flowbite.com/docs/images/logo.svg"
         class="mr-3 h-6 sm:h-9"
@@ -13,6 +13,7 @@
         >{{ "header.title" | translate }}</span
       >
     </a>
+
     <div class="flex items-center md:order-2">
       <button
         (click)="isOpenLanguage = !isOpenLanguage"
@@ -89,14 +90,14 @@
       >
         <li class="cursor-pointer">
           <a
-            routerLink="/quest/home"
+            [routerLink]="'/guest/home'"
             class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
             >{{ "header.home" | translate }}
           </a>
         </li>
         <li *ngIf="!isLogged && !isLoginPage" class="cursor-pointer">
           <a
-            routerLink="/auth/login"
+            [routerLink]="'/auth/login'"
             class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
             >{{ "header.singIn" | translate }}</a
           >
@@ -104,7 +105,7 @@
 
         <li *ngIf="isLogged" class="cursor-pointer">
           <a
-            routerLink="/logged/create/ads"
+            [routerLink]="'/logged/create/ads'"
             class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
             >{{ "header.craeteAds" | translate }}</a
           >

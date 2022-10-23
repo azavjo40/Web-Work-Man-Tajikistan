@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Store } from '@ngxs/store';
-import { AppState } from './stores/app/state';
+import { ActivationEnd, Router } from '@angular/router';
+import { I18nService } from './modules/i18n/i18n.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private translate: TranslateService, private store: Store) {}
+  constructor(private i18nService: I18nService, private router: Router) {}
   ngOnInit(): void {
-    const language: any = this.store.selectSnapshot(AppState.language);
-    this.translate.use(language ? language : 'tj');
+    this.i18nService.initLanguage();
   }
 }

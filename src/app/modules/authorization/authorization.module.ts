@@ -4,10 +4,11 @@ import { AuthorizationRouter } from 'src/app/modules/authorization/authorization
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthorizationComponent } from './authorization.component';
+import { I18nModule } from 'src/app/modules/i18n/i18n.module';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, AuthorizationComponent],
-  imports: [AuthorizationRouter, SharedModule],
+  imports: [AuthorizationRouter, SharedModule, I18nModule],
   providers: [],
 })
 export class AuthorizationModule {}

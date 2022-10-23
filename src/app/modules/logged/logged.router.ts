@@ -9,7 +9,7 @@ const routes: Routes = [
     component: LoggedComponent,
     children: [
       { path: 'create/ads', component: AdsComponent },
-      { path: '**', redirectTo: 'logged/page' },
+      { path: '**', redirectTo: 'logged/ads' },
     ],
   },
 ];

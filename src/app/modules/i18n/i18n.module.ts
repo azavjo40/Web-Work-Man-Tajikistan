@@ -1,14 +1,9 @@
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {
-  TranslateLoader,
-  TranslateModule,
-  TranslateService,
-} from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from 'src/environments/environment';
-import { Store } from '@ngxs/store';
-import { AppState } from '../stores/app/state';
+import { I18nService } from './i18n.service';
 
 @NgModule({
   imports: [
@@ -22,10 +17,11 @@ import { AppState } from '../stores/app/state';
     }),
   ],
   exports: [TranslateModule],
+  providers: [I18nService],
 })
 export class I18nModule {
-  constructor(translate: TranslateService) {
-    translate.addLangs(['en', 'ru', 'tj']);
+  constructor(private i18nService: I18nService) {
+    this.i18nService.initLanguage();
   }
 }
 
