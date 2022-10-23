@@ -23,3 +23,6 @@
     </div>
   </mat-chip-list>
 </div>
+<div *ngIf="hasError" class="h-4 pt-0.5 ml-3">
+  <app-input-errors [errors]="errorControll"></app-input-errors>
+</div>

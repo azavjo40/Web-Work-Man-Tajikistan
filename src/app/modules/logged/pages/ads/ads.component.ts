@@ -1,10 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { AppService } from 'src/app/stores/app/service';
 import { AppState } from 'src/app/stores/app/state';
@@ -14,7 +10,6 @@ import { environment } from 'src/environments/environment';
   selector: 'app-ads',
   templateUrl: './ads.component.html',
   styleUrls: ['./ads.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdsComponent implements OnInit {
   public apiUrl: string = environment.apiUrl;
@@ -25,7 +20,7 @@ export class AdsComponent implements OnInit {
     city: ['Душанбе', [Validators.required]],
     description: [null, [Validators.required]],
     skils: [null, [Validators.required]],
-    images: [[]],
+    images: [[], [Validators.required]],
     isPublish: [true, [Validators.required]],
     userId: [null, [Validators.required]],
   });
@@ -34,7 +29,8 @@ export class AdsComponent implements OnInit {
     private fb: FormBuilder,
     private appService: AppService,
     private store: Store,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,12 +43,24 @@ export class AdsComponent implements OnInit {
     this.form.get('skils')?.setValue(chips);
   }
 
+  get hasErrorImages(): boolean {
+    return (
+      this.form.controls?.images?.touched && this.form.controls?.images?.invalid
+    );
+  }
+
+  public get errorControllImages() {
+    return this.form.controls?.images?.errors;
+  }
+
   public uploadImage(event: any) {
     this.appService
       .createImageLink(event.target.files)
-      .subscribe((item: any) =>
-        this.form.patchValue({ images: [...this.form.value.images, item.url] })
-      );
+      .subscribe((item: any) => {
+        this.form.patchValue({
+          images: [...this.form.value?.images, item.url],
+        });
+      });
   }
 
   public getAdsUser() {
@@ -61,15 +69,21 @@ export class AdsComponent implements OnInit {
       .subscribe((item: any) => {
         this.userAds = item;
         this.form.patchValue({
-          title: item?.ads?.title,
-          city: item?.ads?.city,
-          description: item?.ads?.description,
-          skils: item?.ads?.skils,
-          images: item?.ads?.images,
-          isPublish: item?.ads?.isPublish,
+          title: item?.ads?.title || null,
+          city: item?.ads?.city || 'Душанбе',
+          description: item?.ads?.description || null,
+          skils: item?.ads?.skils || [],
+          images: item?.ads?.images || [],
+          isPublish: item?.ads?.isPublish || true,
         });
         this.cdr.markForCheck();
       });
+  }
+
+  public deleteAds() {
+    this.appService
+      .deleteAds()
+      .subscribe(() => this.router.navigateByUrl('/guest/home'));
   }
 
   public save() {

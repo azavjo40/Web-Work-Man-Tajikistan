@@ -54,6 +54,17 @@ export class ChipsAutocomplete implements OnInit, OnDestroy {
     this.subscription$.unsubscribe();
   }
 
+  get hasError(): boolean {
+    return (
+      this.chipsForm.controls?.skils?.touched &&
+      this.chipsForm.controls?.skils?.invalid
+    );
+  }
+
+  public get errorControll() {
+    return this.chipsForm.controls?.skils?.errors;
+  }
+
   public addByBlur(event: any) {
     const value = (event.target.value || '').trim();
 

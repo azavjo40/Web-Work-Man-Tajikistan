@@ -1,0 +1,21 @@
+<div [style]="{ backgroundColor: bg, borderRadius: rounded }">
+  <textarea
+    [disabled]="disabled"
+    [(ngModel)]="value"
+    (blur)="blur.emit()"
+    (focus)="focus.emit()"
+    [ngStyle]="{ width: width, height: height }"
+    [ngClass]="{
+      'border-[#FF0000] placeholder-[#FF0000] ': hasError,
+      border: !isBorder
+    }"
+    [placeholder]="placeholder"
+    class="resize-none outline-none h-full w-full bg-[#EAEAEA] rounded-md p-3"
+  ></textarea>
+</div>
+<div *ngIf="hasError" class="h-4 pt-0.5 ml-3">
+  <app-input-errors
+    *ngIf="hasError"
+    [errors]="errorControll"
+  ></app-input-errors>
+</div>

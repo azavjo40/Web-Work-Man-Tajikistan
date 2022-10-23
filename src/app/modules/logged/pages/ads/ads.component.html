@@ -32,14 +32,16 @@
         <option ngValue="Лелнобод">Лелнобод</option>
       </select>
     </div>
-    <span class="mt-4">{{ "ads.description" | translate }}</span>
-    <textarea
-      formControlName="description"
-      placeholder="Description"
-      class="resize-none outline-none h-40 bg-[#EAEAEA] rounded-md p-3"
-    ></textarea>
 
-    <span class="mt-4">{{ "ads.skills" | translate }}</span>
+    <span class="mt-4">{{ "ads.description" | translate }}</span>
+    <div class="h-40 bg-[#EAEAEA]">
+      <app-textarea
+        height="160px"
+        formControlName="description"
+        placeholder="Description"
+      ></app-textarea>
+    </div>
+    <span class="mt-6">{{ "ads.skills" | translate }}</span>
     <div class="h-full bg-[#EAEAEA] rounded-md p-3 flex">
       <div class="w-full h-full">
         <app-chips-autocomplete
@@ -50,12 +52,18 @@
         </app-chips-autocomplete>
       </div>
     </div>
+
     <span class="mt-4">{{ "ads.workPhoto" | translate }}</span>
-    <div class="h-32 bg-[#EAEAEA] rounded-md p-3 relative flex justify-between">
+    <div
+      class="h-32 bg-[#EAEAEA] rounded-md p-3 relative flex justify-between"
+      [ngClass]="{
+        'border border-[#FF0000] placeholder-[#FF0000] ': hasErrorImages
+      }"
+    >
       <div class="flex items-center overflow-x-auto w-[80%] md:w-[85%]">
         <img
           class="w-20 h-20 ml-2 cursor-pointer"
-          *ngFor="let item of form?.value?.images"
+          *ngFor="let item of form.get('images').value"
           [src]="apiUrl + '/' + item"
           (click)="modalImages.open()"
         />
@@ -75,6 +83,10 @@
         />
       </label>
     </div>
+    <div *ngIf="hasErrorImages" class="h-4 pt-0.5 ml-3">
+      <app-input-errors [errors]="errorControllImages"></app-input-errors>
+    </div>
+
     <div class="flex items-end">
       <label
         for="red-toggle"
@@ -103,6 +115,16 @@
           {{ "ads.unPublish" | translate }} ?</span
         >
       </label>
+      <div class="mt-4 w-[150px] md:w-[200px] ml-auto">
+        <app-button
+          rounded="30px"
+          [isWidthFull]="true"
+          height="40px"
+          type="submit"
+          (click)="deleteAds()"
+          >{{ "ads.deleteAds" | translate }}</app-button
+        >
+      </div>
       <div class="mt-4 w-[150px] md:w-[200px] ml-auto">
         <app-button
           rounded="30px"

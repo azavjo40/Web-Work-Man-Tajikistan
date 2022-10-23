@@ -17,7 +17,8 @@
     "unPublish":"Нашр кардан",
     "call":"Занг занед",
     "add":"Илова",
-    "newSkil":"Маҳорати нав ва enter!"
+    "newSkil":"Маҳорати нав ва enter!",
+    "deleteAds":"Нест кунед ?"
    },
    "auth":{
     "login":"Даромадан",

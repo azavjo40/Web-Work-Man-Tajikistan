@@ -17,7 +17,8 @@
     "unPublish":"Un Publish",
     "call":"Call",
     "add":"Add",
-    "newSkil":"New skill and enter!"
+    "newSkil":"New skill and enter!",
+    "deleteAds":"Delete ?"
    },
    "auth":{
     "login":"Login",

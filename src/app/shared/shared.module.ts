@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ChipsAutocomplete } from './components/chips-autocomplete/chips-autocomplete.component';
 import { I18nModule } from '../modules/i18n/i18n.module';
 import { SpliceImagePipe } from './pipes/spliceImage.pipe';
+import { TextareaComponent } from './components/textarea/textarea.component';
 
 const components: any = [
   ButtonComponent,
@@ -29,6 +30,7 @@ const components: any = [
   InputErrorsComponent,
   LogoComponent,
   ChipsAutocomplete,
+  TextareaComponent,
 ];
 
 const modals: any = [HeaderComponent];
