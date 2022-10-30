@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { I18nService } from './modules/i18n/i18n.service';
 @Component({
   selector: 'app-root',

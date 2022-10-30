@@ -27,6 +27,12 @@
     "singIn":"даромад",
     "phone":"Телефон",
     "password":"Рамз",
-    "name":"Ном"
+    "name":"Ном насабы"
+   },
+   "cities":{
+    "dushanbe":"Душанбе",
+    "kulob":"Кулоб",
+    "leninobod":"Ленинобод",
+    "kurgantepa":"Кургонтеппа"
    }
 }

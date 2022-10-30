@@ -46,7 +46,7 @@ export class AppService {
   }
 
   public updateUserImage(url: string): Observable<IOutPutUser> {
-    return this.apiService.put('/update/user', { image: url }).pipe(
+    return this.apiService.put('/user/image/' + url).pipe(
       tap((data: any) => {
         this.getUser().subscribe();
       })
@@ -59,8 +59,10 @@ export class AppService {
     return this.apiService.post('/upload', formdata);
   }
 
-  public getAllAds(): Observable<Array<IAdsApi>> {
-    return this.apiService.get('/ads');
+  public getAllAds(form: any): Observable<Array<IAdsApi>> {
+    return this.apiService.get(
+      `/ads?page=${form?.page}&perPage=${form?.perPage}`
+    );
   }
 
   public getAdsById(id: string, isUserId?: boolean): Observable<IAdsApi> {
@@ -73,6 +75,14 @@ export class AppService {
 
   public putAds(data: any): Observable<any> {
     return this.apiService.put('/ads', data);
+  }
+
+  public putAdsImage(image: string): Observable<any> {
+    return this.apiService.put('/ads/image/' + image);
+  }
+
+  public deleteAdsImage(image: string): Observable<any> {
+    return this.apiService.delete('/ads/image/' + image);
   }
 
   public deleteAds(): Observable<any> {

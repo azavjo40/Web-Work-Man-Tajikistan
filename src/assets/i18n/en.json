@@ -27,6 +27,12 @@
     "singIn":"Sing in",
     "phone":"Phone",
     "password":"Password",
-    "name":"Name"
+    "name":"Full name"
+   },
+   "cities":{
+    "dushanbe":"Dushanbe",
+    "kulob":"Kulob",
+    "leninobod":"Leninobod",
+    "kurgantepa":"Kurgantepa"
    }
 }

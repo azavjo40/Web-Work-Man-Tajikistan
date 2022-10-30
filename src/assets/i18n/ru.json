@@ -27,6 +27,12 @@
       "singIn":"Войти",
       "phone":"Телефон",
       "password":"Пароль",
-      "name":"Имя"
+      "name":"Имя фамилия"
+     },
+     "cities":{
+      "dushanbe":"Душанбе",
+      "kulob":"Куляб",
+      "leninobod":"Ленинабад",
+      "kurgantepa":"Кургантепа"
      }
 }

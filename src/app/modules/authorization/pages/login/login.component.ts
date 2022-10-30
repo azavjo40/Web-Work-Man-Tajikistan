@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/stores/app/service';
@@ -9,6 +9,9 @@ import { AppService } from 'src/app/stores/app/service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  @Output() refreshLogin: EventEmitter<FocusEvent> = new EventEmitter();
+  @Input() isLogo: boolean = true;
+  @Input() isGoToHome: boolean = false;
   public form: UntypedFormGroup = this.fb.group({
     username: [null, [Validators.required]],
     password: [null, [Validators.required]],
@@ -24,7 +27,8 @@ export class LoginComponent {
     if (this.form.invalid) return this.form.markAllAsTouched();
     this.appService.login(this.form.value).subscribe(() => {
       this.form.reset();
-      this.router.navigateByUrl('/guest/home');
+      this.refreshLogin.emit();
+      this.router.navigateByUrl('/logged/create/ads');
     });
   }
 }

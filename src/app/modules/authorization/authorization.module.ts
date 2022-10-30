@@ -10,5 +10,6 @@ import { I18nModule } from 'src/app/modules/i18n/i18n.module';
   declarations: [LoginComponent, RegisterComponent, AuthorizationComponent],
   imports: [AuthorizationRouter, SharedModule, I18nModule],
   providers: [],
+  exports: [LoginComponent],
 })
 export class AuthorizationModule {}

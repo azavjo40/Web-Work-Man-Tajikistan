@@ -5,6 +5,17 @@
   [config]="swiperConfig"
 >
   <ng-template swiperSlide *ngFor="let img of images">
-    <img class="w-full h-[300px] md:h-[400px]" [src]="apiUrl + '/' + img" />
+    <div class="relative">
+      <span
+        *ngIf="isDelete"
+        (click)="deleteImage(img)"
+        class="absolute top-10 right-10 text-red-700 z-50 cursor-pointer"
+        >{{ "ads.deleteAds" | translate }}</span
+      >
+      <img
+        class="w-full h-[300px] md:h-[400px] z-0"
+        [src]="apiUrl + '/' + img"
+      />
+    </div>
   </ng-template>
 </swiper>

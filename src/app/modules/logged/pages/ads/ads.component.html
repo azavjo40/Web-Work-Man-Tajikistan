@@ -23,13 +23,12 @@
       </div>
 
       <select
-        id="city"
         class="outline-none h-12 bg-[#EAEAEA] rounded-md p-3 text-gray-900 text-sm"
         formControlName="city"
       >
-        <option ngValue="Душанбе">Душанбе</option>
-        <option ngValue="Кулоб">Кулоб</option>
-        <option ngValue="Лелнобод">Лелнобод</option>
+        <option *ngFor="let city of cities" [ngValue]="city">
+          {{ "cities." + city | translate }}
+        </option>
       </select>
     </div>
 
@@ -60,7 +59,7 @@
         'border border-[#FF0000] placeholder-[#FF0000] ': hasErrorImages
       }"
     >
-      <div class="flex items-center overflow-x-auto w-[80%] md:w-[85%]">
+      <div class="flex items-center overflow-x-auto w-[80%] md:w-[85%] h-24">
         <img
           class="w-20 h-20 ml-2 cursor-pointer"
           *ngFor="let item of form.get('images').value"
@@ -143,5 +142,15 @@
   <app-swiper-example
     [isNavigation]="true"
     [images]="form.value.images"
+    (delete)="deleteAdsImage($event)"
+    [isDelete]="true"
   ></app-swiper-example>
+</app-modal>
+
+<app-modal #modalError [isClose]="false" [isVisible]="isVisibleModal">
+  <app-login
+    (refreshLogin)="modalError.close(); getAdsUser()"
+    [isLogo]="false"
+    [isGoToHome]="true"
+  ></app-login>
 </app-modal>

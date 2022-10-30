@@ -1,5 +1,15 @@
-<div class="flex mt-36 justify-around items-center" [formGroup]="form">
-  <div class="w-[80%] md:w-[40%] lg:w-[30%] h-full">
+<div
+  class="flex justify-around items-center"
+  [ngClass]="{ 'w-[500px] my-10': !isLogo, 'mt-36': isLogo }"
+  [formGroup]="form"
+>
+  <div
+    class="h-full"
+    [ngClass]="{
+      'w-[80%] md:w-[90%]': !isLogo,
+      'w-[80%] md:w-[40%] lg:w-[30%]': isLogo
+    }"
+  >
     <h1 class="w-full mb-3 text-xl font-medium text-gray-900">
       {{ "auth.login" | translate }}
     </h1>
@@ -19,11 +29,20 @@
         type="password"
       ></app-input-text>
     </div>
-    <a
-      [routerLink]="'/auth/register'"
-      class="open-sans text-[#262729] cursor-pointer text-xs font-semibold sm:text-sm"
-      >{{ "auth.singUp" | translate }}?</a
-    >
+    <div class="w-full flex" [ngClass]="{ 'justify-around': isGoToHome }">
+      <a
+        [routerLink]="'/auth/register'"
+        class="open-sans text-[#262729] cursor-pointer text-xs font-semibold sm:text-sm mr-auto"
+        >{{ "auth.singUp" | translate }}?</a
+      >
+      <a
+        *ngIf="isGoToHome"
+        [routerLink]="'/guest/home'"
+        class="open-sans text-[#262729] cursor-pointer text-xs font-semibold sm:text-sm"
+        >{{ "header.home" | translate }}?</a
+      >
+    </div>
+
     <div class="sm:mt-8 mt-4 w-full">
       <app-button
         rounded="30px"
@@ -35,7 +54,7 @@
       >
     </div>
   </div>
-  <div class="w-[40%] md:block hidden">
+  <div class="w-[40%] md:block hidden" *ngIf="isLogo">
     <app-logo></app-logo>
   </div>
 </div>

@@ -49,6 +49,6 @@ export class StorageService {
     this.removeToken();
     this.removeUser();
     this.store.dispatch(new SetUser(null));
-    this.router.navigateByUrl('/auth/login');
+    this.router.navigateByUrl('/guest/home');
   }
 }

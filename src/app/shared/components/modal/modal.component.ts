@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -6,7 +6,8 @@ import { Component, OnDestroy } from '@angular/core';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnDestroy {
-  public isVisible = false;
+  @Input() isClose: boolean = true;
+  @Input() isVisible = false;
 
   public open(): void {
     this.isVisible = true;

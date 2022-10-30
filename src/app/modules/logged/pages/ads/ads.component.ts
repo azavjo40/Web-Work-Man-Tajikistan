@@ -1,7 +1,16 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { ModalComponent } from './../../../../shared/components/modal/modal.component';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { AppService } from 'src/app/stores/app/service';
 import { AppState } from 'src/app/stores/app/state';
 import { environment } from 'src/environments/environment';
@@ -11,13 +20,19 @@ import { environment } from 'src/environments/environment';
   templateUrl: './ads.component.html',
   styleUrls: ['./ads.component.scss'],
 })
-export class AdsComponent implements OnInit {
+export class AdsComponent implements OnInit, OnDestroy {
+  @ViewChild('modalError', { static: false }) modalError!: ModalComponent;
+  @Select(AppState.user) user$!: Observable<any>;
+  private subscription$: Subscription = new Subscription();
   public apiUrl: string = environment.apiUrl;
   public user!: any;
   public userAds!: any;
+  public isVisibleModal = false;
+  public cities = ['dushanbe', 'kulob', 'leninobod', 'kurgantepa'];
+
   public form: any = this.fb.group({
     title: [null, [Validators.required]],
-    city: ['Душанбе', [Validators.required]],
+    city: ['dushanbe', [Validators.required]],
     description: [null, [Validators.required]],
     skils: [null, [Validators.required]],
     images: [[], [Validators.required]],
@@ -28,15 +43,23 @@ export class AdsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private appService: AppService,
-    private store: Store,
     private cdr: ChangeDetectorRef,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.user = this.store.selectSnapshot(AppState.user);
-    this.form.patchValue({ userId: this.user?._id });
-    this.getAdsUser();
+    this.subscription$.add(
+      this.user$.subscribe((user) => {
+        this.user = user;
+        this.form.patchValue({ userId: this.user?._id });
+        this.getAdsUser();
+        this.isVisibleModal = !user?._id;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 
   public getChips(chips: any) {
@@ -57,6 +80,7 @@ export class AdsComponent implements OnInit {
     this.appService
       .createImageLink(event.target.files)
       .subscribe((item: any) => {
+        this.appService.putAdsImage(item.url).subscribe();
         this.form.patchValue({
           images: [...this.form.value?.images, item.url],
         });
@@ -64,13 +88,14 @@ export class AdsComponent implements OnInit {
   }
 
   public getAdsUser() {
+    if (!this.user?._id) return;
     this.appService
       .getAdsById(this.form.value.userId, true)
       .subscribe((item: any) => {
         this.userAds = item;
         this.form.patchValue({
           title: item?.ads?.title || null,
-          city: item?.ads?.city || 'Душанбе',
+          city: item?.ads?.city || 'dushanbe',
           description: item?.ads?.description || null,
           skils: item?.ads?.skils || [],
           images: item?.ads?.images || [],
@@ -84,6 +109,13 @@ export class AdsComponent implements OnInit {
     this.appService
       .deleteAds()
       .subscribe(() => this.router.navigateByUrl('/guest/home'));
+  }
+
+  public deleteAdsImage(image: any) {
+    this.form
+      .get('images')
+      .setValue(this.form.value.images.filter((img: any) => img !== image));
+    this.appService.deleteAdsImage(image).subscribe();
   }
 
   public save() {

@@ -9,3 +9,8 @@ export class SetLanguage {
   static readonly type = '[App] set language';
   constructor(public language: string | null) {}
 }
+
+export class SetAds {
+  static readonly type = '[App] set ads';
+  constructor(public data: any) {}
+}

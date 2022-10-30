@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
   public canActivate(): boolean {
     const token = this.storageService.getToken();
     if (token) {
-      this.router.navigateByUrl('/guest/home');
+      this.router.navigateByUrl('/logged/create/ads');
       return false;
     }
     return true;

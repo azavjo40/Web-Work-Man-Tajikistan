@@ -26,7 +26,7 @@ export class RegisterComponent {
     if (this.form.invalid) return this.form.markAllAsTouched();
     this.appService.register(this.form.value).subscribe(() => {
       this.form.reset();
-      this.router.navigateByUrl('/quest/home');
+      this.router.navigateByUrl('/logged/create/ads');
     });
   }
 }

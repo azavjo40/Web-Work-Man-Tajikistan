@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, StateContext, NgxsOnInit, Selector } from '@ngxs/store';
 import { StorageService } from 'src/app/core/services/storage.service';
-import { SetLanguage, SetUser } from './actions';
+import { SetLanguage, SetUser, SetAds } from './actions';
 import { IOutPutUser } from './types';
 
 @Injectable()
@@ -39,5 +39,15 @@ export class AppState implements NgxsOnInit {
   public SetLanguage(ctx: StateContext<any>, action: SetLanguage): void {
     this.storageService.saveLanguage(action.language);
     ctx.patchState({ language: action.language });
+  }
+
+  @Selector()
+  static ads(state: any): any {
+    return state.data;
+  }
+
+  @Action(SetAds)
+  public SetAds(ctx: StateContext<any>, action: any): void {
+    ctx.patchState({ data: action.data });
   }
 }

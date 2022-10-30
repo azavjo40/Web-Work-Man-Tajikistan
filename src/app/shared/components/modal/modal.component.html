@@ -1,4 +1,8 @@
-<div *ngIf="isVisible" (click)="isVisible = false" class="w-full bg-[#000000BF] h-full flex justify-center items-center fixed top-0 left-0 z-50">
+<div
+  *ngIf="isVisible"
+  (click)="isClose ? (isVisible = false) : null"
+  class="w-full bg-[#000000BF] h-full flex justify-center items-center fixed top-0 left-0 z-50"
+>
   <div (click)="$event.stopPropagation()" class="bg-white">
     <ng-content></ng-content>
   </div>

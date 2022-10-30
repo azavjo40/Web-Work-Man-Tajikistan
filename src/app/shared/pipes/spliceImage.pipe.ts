@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SpliceImagePipe implements PipeTransform {
   transform(images: Array<any>) {
-    if (images?.length) return [...images]?.splice(0, 3);
+    if (images?.length) return [...images]?.splice(0, 4);
     return;
   }
 }

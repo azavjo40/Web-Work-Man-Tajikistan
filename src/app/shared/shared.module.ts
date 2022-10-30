@@ -1,3 +1,4 @@
+import { ScrollTrackerDirective } from './directives/scrollTracker.directive';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +38,7 @@ const modals: any = [HeaderComponent];
 
 const pipes: any = [SpliceImagePipe];
 
-const directives: any = [];
+const directives: any = [ScrollTrackerDirective];
 
 const modules: any = [
   CommonModule,
