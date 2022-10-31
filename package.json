@@ -2,6 +2,7 @@
   "name": "work-man-tajikistan",
   "version": "0.0.0",
   "scripts": {
+    "heroku-postbuild":"ng build && ng run work_man_tajikistan:server",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
