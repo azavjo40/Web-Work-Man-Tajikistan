@@ -2,6 +2,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "start:prod":"ng build && node dist/work_man_tajikistan/server/main.js",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
