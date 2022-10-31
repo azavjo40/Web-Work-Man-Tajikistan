@@ -3,7 +3,7 @@
   "scripts": {
     "heroku-postbuild":"ng build --prod",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node dist/work_man_tajikistan/server/main.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
