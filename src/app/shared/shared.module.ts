@@ -20,6 +20,7 @@ import { ChipsAutocomplete } from './components/chips-autocomplete/chips-autocom
 import { I18nModule } from '../modules/i18n/i18n.module';
 import { SpliceImagePipe } from './pipes/spliceImage.pipe';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
 
 const components: any = [
   ButtonComponent,
@@ -52,6 +53,7 @@ const modules: any = [
   MatIconModule,
   MatSelectModule,
   I18nModule,
+  NgxLoaderIndicatorModule,
 ];
 
 @NgModule({

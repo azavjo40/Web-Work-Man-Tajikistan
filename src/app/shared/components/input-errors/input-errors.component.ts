@@ -16,8 +16,9 @@ export class InputErrorsComponent {
       required: 'The field is required',
       minlength: 'Must be at least 8 characters',
       email: 'Enter a valid email address',
-      pattern: 'Enter a valid email address',
+      pattern: 'Enter a valid phone +992918000000',
       matchPassword: 'Passwords do not match',
+      maxlength: 'Must be at least 13 characters',
     };
     return messages[key];
   }

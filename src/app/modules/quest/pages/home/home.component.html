@@ -1,9 +1,12 @@
 <div
   class="flex flex-col h-[90%] max-h-full w-full px-2 mt-16 md:mt-20 pb-1 mf:pb-4 overflow-y-auto"
   (scroll)="onScroll($event)"
+  [loader]="isLoading"
+  #contentArea
 >
   <div *ngFor="let item of workersMan">
     <a
+      (click)="savePositionScroll()"
       class="bg-white flex w-full h-20 md:h-28 mt-1 md:mt-1.5 justify-between rounded-md md:rounded-lg cursor-pointer"
       [routerLink]="
         item?.user?.isIntegrtion
@@ -34,10 +37,21 @@
         <div
           class="flex flex-col h-full justify-between py-3 md:py-5 black-our ml-6"
         >
-          <span class="mb-2 md:text-2xl font-normal tracking-tight black-our">{{
-            item?.ads?.title
-          }}</span>
-          <span class="text-sm md:text-lg text-green-400">{{
+          <span
+            class="mb-2 md:text-2xl font-normal tracking-tight black-our block sm:hidden"
+            >{{ item?.ads?.title?.slice(0, 22)
+            }}<span *ngIf="item?.ads?.title?.length >= 22"> ...</span></span
+          >
+
+          <span
+            class="mb-2 md:text-2xl font-normal tracking-tight black-our hidden sm:block"
+            >{{ item?.ads?.title }}</span
+          >
+          <span class="text-sm md:text-lg text-green-400 block sm:hidden"
+            >{{ item?.user?.name?.slice(0, 22)
+            }}<span *ngIf="item?.ads?.title?.length >= 22"> ...</span></span
+          >
+          <span class="text-sm md:text-lg text-green-400 hidden sm:block">{{
             item?.user?.name
           }}</span>
         </div>

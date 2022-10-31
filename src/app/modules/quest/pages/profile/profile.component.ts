@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   public apiUrl: string = environment.apiUrl;
   public user!: any;
   public queryParams: any = this.route.snapshot.queryParams;
+  public isLoading: boolean = false;
 
   constructor(
     private appService: AppService,
@@ -32,12 +33,17 @@ export class ProfileComponent implements OnInit {
   }
 
   public getadsById() {
+    this.isLoading = true;
     this.appService
       .getAdsById(this.queryParams?.profileId, this.queryParams?.isIntegrtion)
-      .subscribe((item: IAdsApi) => {
-        this.workerMan = item;
-        this.titleService.setTitle(item?.user?.name);
-      });
+      .subscribe(
+        (item: IAdsApi) => {
+          this.workerMan = item;
+          this.titleService.setTitle(item?.user?.name);
+          this.isLoading = false;
+        },
+        () => (this.isLoading = false)
+      );
   }
 
   public uploadImage(event: any) {

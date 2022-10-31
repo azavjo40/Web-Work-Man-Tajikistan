@@ -12,6 +12,7 @@ import { NgxsModule } from '@ngxs/store';
 import { AppState } from './stores/app/state';
 import { environment } from 'src/environments/environment';
 import { I18nModule } from './modules/i18n/i18n.module';
+import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -26,6 +27,10 @@ import { I18nModule } from './modules/i18n/i18n.module';
       developmentMode: !environment.production,
     }),
     I18nModule,
+    NgxLoaderIndicatorModule.forRoot({
+      loaderStyles: { background: 'transparent' },
+      imgStyles: { width: '40px' },
+    }),
   ],
   providers: [
     {

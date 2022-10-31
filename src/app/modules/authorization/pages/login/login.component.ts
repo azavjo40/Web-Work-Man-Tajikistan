@@ -13,7 +13,14 @@ export class LoginComponent {
   @Input() isLogo: boolean = true;
   @Input() isGoToHome: boolean = false;
   public form: UntypedFormGroup = this.fb.group({
-    username: [null, [Validators.required]],
+    username: [
+      '+992',
+      [
+        Validators.required,
+        Validators.pattern(new RegExp('(992)[0-9 ]{9}')),
+        Validators.maxLength(13),
+      ],
+    ],
     password: [null, [Validators.required]],
   });
 

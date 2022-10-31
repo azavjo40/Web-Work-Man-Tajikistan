@@ -90,7 +90,7 @@ export class AdsComponent implements OnInit, OnDestroy {
   public getAdsUser() {
     if (!this.user?._id) return;
     this.appService
-      .getAdsById(this.form.value.userId, true)
+      .getAdsById(this.form.value.userId, false, true)
       .subscribe((item: any) => {
         this.userAds = item;
         this.form.patchValue({

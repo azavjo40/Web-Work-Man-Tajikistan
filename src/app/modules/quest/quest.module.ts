@@ -1,3 +1,4 @@
+import { HomeService } from './pages/home/home.service';
 import { NgModule } from '@angular/core';
 import { I18nModule } from 'src/app/modules/i18n/i18n.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -9,5 +10,6 @@ import { QuestRouter } from './quest.router';
 @NgModule({
   declarations: [ProfileComponent, HomeComponent, QuestComponent],
   imports: [QuestRouter, SharedModule, I18nModule],
+  providers: [HomeService],
 })
 export class QuestModule {}

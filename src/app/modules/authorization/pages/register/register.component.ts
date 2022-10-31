@@ -10,7 +10,14 @@ import { AppService } from 'src/app/stores/app/service';
 })
 export class RegisterComponent {
   public form: UntypedFormGroup = this.fb.group({
-    username: [null, [Validators.required]],
+    username: [
+      '+992',
+      [
+        Validators.required,
+        Validators.pattern(new RegExp('(992)[0-9 ]{9}')),
+        Validators.maxLength(13),
+      ],
+    ],
     password: [null, [Validators.required]],
     name: [null, [Validators.required]],
     roles: [['user'], [Validators.required]],

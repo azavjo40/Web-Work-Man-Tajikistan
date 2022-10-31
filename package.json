@@ -36,6 +36,7 @@
     "@tailwindcss/typography": "^0.5.7",
     "express": "^4.15.2",
     "localstorage-polyfill": "^1.0.1",
+    "ngx-loader-indicator": "^10.0.0",
     "rxjs": "~7.5.0",
     "swiper": "^8.4.2",
     "tslib": "^2.3.0",
