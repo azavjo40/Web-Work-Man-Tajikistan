@@ -1,1 +1,1 @@
-web: npm run dev:ssr
+web: npm run build:ssr
