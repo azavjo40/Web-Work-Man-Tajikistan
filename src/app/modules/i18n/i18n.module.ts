@@ -9,6 +9,7 @@ import { I18nService } from './i18n.service';
   imports: [
     HttpClientModule,
     TranslateModule.forRoot({
+      defaultLanguage: 'tj',
       loader: {
         provide: TranslateLoader,
         useFactory: translateLoaderFactory,

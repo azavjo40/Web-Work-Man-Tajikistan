@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isLogged: boolean = false;
   public isOpenMenuMobile: boolean = false;
   public isOpenLanguage: boolean = false;
-  public language: any = this.store.selectSnapshot(AppState.language);
+  public language: any = this.store.selectSnapshot(AppState.language) || 'tj';
   public languageLists: any = { ru: 'Русский', en: 'English', tj: 'Тоҷикӣ' };
 
   constructor(

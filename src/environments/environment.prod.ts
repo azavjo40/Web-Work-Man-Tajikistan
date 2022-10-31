@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   apiUrl: 'https://api-work-man-tajikistan.herokuapp.com',
-  frontendUrl: 'http://localhost:4200',
+  frontendUrl: 'http://localhost:4000',
 };

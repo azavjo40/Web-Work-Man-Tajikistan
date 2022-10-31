@@ -53,7 +53,7 @@ const modules: any = [
   MatIconModule,
   MatSelectModule,
   I18nModule,
-  NgxLoaderIndicatorModule,
+  // NgxLoaderIndicatorModule,
 ];
 
 @NgModule({
