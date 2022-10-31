@@ -14,7 +14,7 @@
       >
       <img
         class="w-full h-[300px] md:h-[400px] z-0"
-        [src]="apiUrl + '/' + img"
+        [src]="isIntegrtion ? img : apiUrl + '/' + img"
       />
     </div>
   </ng-template>

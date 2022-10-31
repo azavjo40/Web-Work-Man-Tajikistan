@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   public avatar: string = 'assets/icons/avatar-user.png';
   public apiUrl: string = environment.apiUrl;
   public user!: any;
-  public profileId: string = this.route.snapshot.queryParams['profileId'];
+  public queryParams: any = this.route.snapshot.queryParams;
 
   constructor(
     private appService: AppService,
@@ -32,10 +32,12 @@ export class ProfileComponent implements OnInit {
   }
 
   public getadsById() {
-    this.appService.getAdsById(this.profileId).subscribe((item: IAdsApi) => {
-      this.workerMan = item;
-      this.titleService.setTitle(item?.user?.name);
-    });
+    this.appService
+      .getAdsById(this.queryParams?.profileId, this.queryParams?.isIntegrtion)
+      .subscribe((item: IAdsApi) => {
+        this.workerMan = item;
+        this.titleService.setTitle(item?.user?.name);
+      });
   }
 
   public uploadImage(event: any) {

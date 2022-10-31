@@ -65,8 +65,14 @@ export class AppService {
     );
   }
 
-  public getAdsById(id: string, isUserId?: boolean): Observable<IAdsApi> {
-    return this.apiService.get(`/ads/${isUserId ? 'user/' + id : id}`);
+  public getAdsById(
+    id: string,
+    isIntegrtion?: any,
+    isUserId?: boolean
+  ): Observable<IAdsApi> {
+    return this.apiService.get(
+      `/ads/${isUserId ? 'user/' + id : id}?isIntegrtion=${isIntegrtion}`
+    );
   }
 
   public postAds(data: any): Observable<any> {

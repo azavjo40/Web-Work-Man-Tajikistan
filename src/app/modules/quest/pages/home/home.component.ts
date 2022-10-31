@@ -10,7 +10,6 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { AppService } from 'src/app/stores/app/service';
-import { IAdsApi } from 'src/app/stores/app/types';
 import { environment } from 'src/environments/environment';
 import { SetAds } from 'src/app/stores/app/actions';
 
@@ -23,7 +22,7 @@ import { SetAds } from 'src/app/stores/app/actions';
 export class HomeComponent implements OnInit, OnDestroy {
   private subscription$: Subscription = new Subscription();
   public avatar: string = 'assets/icons/avatar-user.png';
-  public workersMan: Array<IAdsApi> = [];
+  public workersMan: Array<any> = [];
   public user!: any;
   public apiUrl: string = environment.apiUrl;
   public total = 0;

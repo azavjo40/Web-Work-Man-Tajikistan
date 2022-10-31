@@ -3,21 +3,33 @@
   (scroll)="onScroll($event)"
 >
   <div *ngFor="let item of workersMan">
-    <div
+    <a
       class="bg-white flex w-full h-20 md:h-28 mt-1 md:mt-1.5 justify-between rounded-md md:rounded-lg cursor-pointer"
       [routerLink]="
-        '/guest/profile/' +
-        item?.user?.name?.replace(' ', '-') +
-        '-' +
-        item?.ads?.title?.replace(' ', '-')
+        item?.user?.isIntegrtion
+          ? '/guest/profile/' + item?.ads?.detailUrl
+          : '/guest/profile/' +
+            item?.user?.name?.replace(' ', '-') +
+            '-' +
+            item?.ads?.title?.replace(' ', '-')
       "
-      [queryParams]="{ profileId: item?.ads?._id }"
+      [queryParams]="{
+        profileId: item?.ads?._id,
+        isIntegrtion: item?.user?.isIntegrtion,
+        city: item?.ads?.city
+      }"
       *ngIf="item?.ads?.isPublish"
     >
       <div class="flex items-center ml-4">
         <img
           class="w-12 md:w-20 h-12 md:h-20 rounded-sm sm:rounded-md"
-          [src]="item?.user?.image ? apiUrl + '/' + item?.user?.image : avatar"
+          [src]="
+            item?.user?.isIntegrtion
+              ? item?.user?.image
+              : item?.user?.image
+              ? apiUrl + '/' + item?.user?.image
+              : avatar
+          "
         />
         <div
           class="flex flex-col h-full justify-between py-3 md:py-5 black-our ml-6"
@@ -38,9 +50,13 @@
           >New</span
         >
         <span class="md:text-lg text-sm flex text-[#99A1AB]">
-          {{ "cities." + item?.ads?.city | translate }}</span
+          {{
+            item?.ads?.isIntegrtion
+              ? item?.ads?.city
+              : ("cities." + item?.ads?.city | translate)
+          }}</span
         >
       </div>
-    </div>
+    </a>
   </div>
 </div>

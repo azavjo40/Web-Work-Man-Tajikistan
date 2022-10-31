@@ -19,6 +19,7 @@ export class SwiperExampleComponent {
   @Input() images: any = [];
   @Input() isNavigation: boolean = false;
   @Input() isWidthFull: boolean = false;
+  @Input() isIntegrtion: boolean = false;
   @Input() isDelete: boolean = false;
   @Output() delete: EventEmitter<string> = new EventEmitter();
   public apiUrl: string = environment.apiUrl;
