@@ -1,6 +1,8 @@
 {
   "version": "0.0.0",
   "scripts": {
+    "start:heroku":"node dist/work_man_tajikistan/server/main.js",
+    "postinstall":"npm run build:ssr",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
