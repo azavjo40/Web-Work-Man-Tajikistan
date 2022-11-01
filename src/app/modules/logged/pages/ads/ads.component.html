@@ -86,10 +86,10 @@
       <app-input-errors [errors]="errorControllImages"></app-input-errors>
     </div>
 
-    <div class="flex items-end">
+    <div class="flex mt-5 sm:items-end flex-col sm:flex-row">
       <label
         for="red-toggle"
-        class="inline-flex relative items-center mr-5 cursor-pointer"
+        class="inline-flex relative items-center mr-5 cursor-pointer w-full"
       >
         <input
           type="checkbox"
@@ -114,25 +114,27 @@
           {{ "ads.unPublish" | translate }} ?</span
         >
       </label>
-      <div class="mt-4 w-[150px] md:w-[200px] ml-auto">
-        <app-button
-          rounded="30px"
-          [isWidthFull]="true"
-          height="40px"
-          type="submit"
-          (click)="deleteAds()"
-          >{{ "ads.deleteAds" | translate }}</app-button
-        >
-      </div>
-      <div class="mt-4 w-[150px] md:w-[200px] ml-auto">
-        <app-button
-          rounded="30px"
-          [isWidthFull]="true"
-          height="40px"
-          type="submit"
-          (click)="save()"
-          >{{ "ads.save" | translate }}</app-button
-        >
+      <div class="flex w-full justify-between">
+        <div class="mt-4 w-[130px] md:w-[180px]">
+          <app-button
+            rounded="30px"
+            [isWidthFull]="true"
+            height="40px"
+            type="submit"
+            (click)="deleteAds()"
+            >{{ "ads.deleteAds" | translate }}</app-button
+          >
+        </div>
+        <div class="mt-4 ml-2 w-[130px] md:w-[180px]">
+          <app-button
+            rounded="30px"
+            [isWidthFull]="true"
+            height="40px"
+            type="submit"
+            (click)="save()"
+            >{{ "ads.save" | translate }}</app-button
+          >
+        </div>
       </div>
     </div>
   </div>

@@ -27,10 +27,10 @@ import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
       developmentMode: !environment.production,
     }),
     I18nModule,
-    // NgxLoaderIndicatorModule.forRoot({
-    //   loaderStyles: { background: 'transparent' },
-    //   imgStyles: { width: '40px' },
-    // }),
+    NgxLoaderIndicatorModule.forRoot({
+      loaderStyles: { background: 'transparent' },
+      imgStyles: { width: '40px' },
+    }),
   ],
   providers: [
     {

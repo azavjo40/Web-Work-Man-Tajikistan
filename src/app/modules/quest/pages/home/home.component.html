@@ -2,6 +2,7 @@
   class="flex flex-col h-[90%] max-h-full w-full px-2 mt-16 md:mt-20 pb-1 mf:pb-4 overflow-y-auto"
   (scroll)="onScroll($event)"
   #contentArea
+  [loader]="isLoading"
 >
   <div *ngFor="let item of workersMan">
     <a
@@ -46,13 +47,15 @@
             class="mb-2 md:text-2xl font-normal tracking-tight black-our hidden sm:block"
             >{{ item?.ads?.title }}</span
           >
-          <span class="text-sm md:text-lg text-green-400 block sm:hidden"
+          <span
+            class="text-sm md:text-lg text-green-400 block sm:hidden capitalize"
             >{{ item?.user?.name?.slice(0, 22)
             }}<span *ngIf="item?.ads?.title?.length >= 22"> ...</span></span
           >
-          <span class="text-sm md:text-lg text-green-400 hidden sm:block">{{
-            item?.user?.name
-          }}</span>
+          <span
+            class="text-sm md:text-lg text-green-400 hidden sm:block capitalize"
+            >{{ item?.user?.name }}</span
+          >
         </div>
       </div>
       <div
