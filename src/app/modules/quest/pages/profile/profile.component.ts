@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 import { AppService } from 'src/app/stores/app/service';
 import { AppState } from 'src/app/stores/app/state';
 import { IAdsApi } from 'src/app/stores/app/types';
@@ -13,6 +14,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  @ViewChild('modalImages') modalImages!: ModalComponent;
+  @ViewChild('modalAvatar') modalAvatar!: ModalComponent;
   public workerMan!: any;
   public avatar: string = 'assets/icons/avatar-user.png';
   public apiUrl: string = environment.apiUrl;
@@ -30,6 +33,14 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.store.selectSnapshot(AppState.user);
     this.getadsById();
+  }
+
+  public openModalAvatar() {
+    this.modalAvatar.open();
+  }
+
+  public openModalImages() {
+    this.modalImages.open();
   }
 
   public getadsById() {

@@ -3,6 +3,8 @@ import {
   Component,
   HostBinding,
   Input,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 
 @Component({
@@ -12,6 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
+  @Output() click: EventEmitter<void> = new EventEmitter();
   @Input() id!: string;
   @Input() type: 'button' | 'submit' = 'button';
   @Input() width!: string;
@@ -23,5 +26,9 @@ export class ButtonComponent {
 
   @HostBinding('class') get classes(): string {
     return this.isWidthFull ? 'block w-full' : 'inline-block';
+  }
+
+  public onClick() {
+    this.click.emit();
   }
 }

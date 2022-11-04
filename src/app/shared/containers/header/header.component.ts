@@ -36,9 +36,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscription$.unsubscribe();
   }
 
+  public openLanguage() {
+    this.isOpenLanguage = !this.isOpenLanguage;
+  }
+
+  public openCloseMenuMobile() {
+    this.isOpenMenuMobile = !this.isOpenMenuMobile;
+    this.isOpenLanguage = false;
+  }
+
   public changeLanguage(lan: string) {
     this.language = lan;
     this.i18nService.useLanguage(lan);
+    this.openLanguage();
   }
 
   public refreshHeader() {

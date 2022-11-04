@@ -16,7 +16,7 @@
 
     <div class="flex items-center md:order-2">
       <button
-        (click)="isOpenLanguage = !isOpenLanguage"
+        (click)="openLanguage()"
         class="inline-flex justify-center items-center p-2 text-sm text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
       >
         {{ languageLists[language] }}
@@ -26,7 +26,7 @@
         class="z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 absolute top-12"
         [ngClass]="{ 'block ': isOpenLanguage, 'hidden ': !isOpenLanguage }"
       >
-        <ul class="py-1" role="none" (click)="isOpenLanguage = false">
+        <ul class="py-1" role="none">
           <li (click)="changeLanguage('tj')">
             <a
               href="#"
@@ -58,7 +58,7 @@
       </div>
 
       <button
-        (click)="isOpenMenuMobile = !isOpenMenuMobile; isOpenLanguage = false"
+        (click)="openCloseMenuMobile()"
         type="button"
         class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
@@ -85,7 +85,7 @@
       [ngClass]="{ 'block ': isOpenMenuMobile, 'hidden ': !isOpenMenuMobile }"
     >
       <ul
-        (click)="isOpenMenuMobile = false"
+        (click)="openCloseMenuMobile()"
         class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
         <li class="cursor-pointer">

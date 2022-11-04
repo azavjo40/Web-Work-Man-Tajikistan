@@ -1,10 +1,8 @@
 <div class="overflow-y-auto h-full" [loader]="isLoading">
   <div class="mt-16 md:mt-10 flex flex-col pb-20">
     <div
-      class="w-full h-full pt-3 pb-3 md:h-[260px] flex flex-col justify-center"
-      [ngStyle]="{
-        background: 'linear-gradient(to bottom right, red,black, yellow'
-      }"
+      *ngIf="workerMan?.ads?.title || workerMan?.user?.name"
+      class="w-full h-full pt-3 pb-3 md:h-[260px] flex flex-col justify-center bg-[#B0C4DE]"
     >
       <div class="flex ml-6 md:ml-8">
         <div class="flex relative">
@@ -17,7 +15,7 @@
                 ? apiUrl + '/' + workerMan?.user?.image
                 : avatar
             "
-            (click)="workerMan?.user?.image && modalAvatar.open()"
+            (click)="workerMan?.user?.image && openModalAvatar()"
           />
           <label
             *ngIf="user?._id && user?._id === workerMan?.user?._id"
@@ -36,14 +34,8 @@
           </label>
         </div>
         <div class="flex flex-col h-full justify-between py-7 md:py-5 ml-6">
-          <span class="text-xl md:text-4xl text-white block sm:hidden"
-            >{{ workerMan?.ads?.title?.slice(0, 16)
-            }}<span *ngIf="workerMan?.ads?.title?.length >= 16">
-              ...</span
-            ></span
-          >
           <span class="text-xl md:text-4xl text-white hidden sm:block">
-            {{ workerMan?.ads?.title }}
+            {{ workerMan?.user?.name }}
           </span>
           <span class="text-base md:text-2xl text-white">{{
             workerMan?.user?.isIntegrtion
@@ -65,9 +57,8 @@
       </app-modal>
 
       <span
-        *ngIf="workerMan?.user?.name"
         class="text-base md:text-2xl text-green-400 md:mt-4 ml-8 md:ml-10 capitalize"
-        >{{ workerMan?.user?.name }}</span
+        >{{ workerMan?.ads?.title }}</span
       >
     </div>
 
@@ -115,7 +106,7 @@
           class="h-[200px] w-[22%] p-2 md:block hidden rounded-md md:rounded-lg"
           *ngFor="let img of workerMan?.ads?.images | spliceImage"
           [src]="workerMan?.user?.isIntegrtion ? img : apiUrl + '/' + img"
-          (click)="modalImages.open()"
+          (click)="openModalImages()"
         />
 
         <img
@@ -125,7 +116,7 @@
               ? workerMan?.ads?.images[0]
               : apiUrl + '/' + workerMan?.ads?.images[0]
           "
-          (click)="modalImages.open()"
+          (click)="openModalImages()"
         />
       </div>
     </div>
