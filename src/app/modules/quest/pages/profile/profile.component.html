@@ -34,10 +34,10 @@
           </label>
         </div>
         <div class="flex flex-col h-full justify-between py-7 md:py-5 ml-6">
-          <span class="text-xl md:text-4xl text-white hidden sm:block">
+          <span class="text-xl md:text-4xl text-black-101">
             {{ workerMan?.user?.name }}
           </span>
-          <span class="text-base md:text-2xl text-white">{{
+          <span class="text-base md:text-2xl text-black-101">{{
             workerMan?.user?.isIntegrtion
               ? queryParams?.city
               : ("cities." + workerMan?.ads?.city | translate)
@@ -57,7 +57,7 @@
       </app-modal>
 
       <span
-        class="text-base md:text-2xl text-green-400 md:mt-4 ml-8 md:ml-10 capitalize"
+        class="text-base md:text-2xl text-black-101 md:mt-4 ml-8 md:ml-10 capitalize"
         >{{ workerMan?.ads?.title }}</span
       >
     </div>
