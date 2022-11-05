@@ -77,6 +77,7 @@ export class AdsComponent implements OnInit, OnDestroy {
   }
 
   public getAdsUser() {
+    if (!this.user?._id) return;
     this.appService
       .getAdsById(this.form.value.userId, false, true)
       .subscribe((item: any) => {
