@@ -56,6 +56,7 @@ export class AdsComponent implements OnInit, OnDestroy {
         this.isVisibleModal = !this.form.value?.userId;
       })
     );
+    this.isVisibleModal = !this.form.value?.userId;
   }
 
   ngOnDestroy(): void {
