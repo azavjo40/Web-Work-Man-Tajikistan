@@ -27,7 +27,7 @@ export class AdsComponent implements OnInit, OnDestroy {
   public apiUrl: string = environment.apiUrl;
   public user!: any;
   public userAds!: any;
-  public isVisibleModal = false;
+  public isVisibleModal = true;
   public cities = ['dushanbe', 'kulob', 'leninobod', 'kurgantepa'];
 
   public form: any = this.fb.group({
@@ -89,6 +89,7 @@ export class AdsComponent implements OnInit, OnDestroy {
   }
 
   public getAdsUser() {
+    console.log(!this.user?._id);
     if (!this.user?._id) return;
     this.appService
       .getAdsById(this.form.value.userId, false, true)
