@@ -53,7 +53,7 @@ export class AdsComponent implements OnInit, OnDestroy {
         this.user = user;
         this.form.patchValue({ userId: this.user?._id });
         this.getAdsUser();
-        this.isVisibleModal = !user?._id;
+        this.isVisibleModal = !this.form.value?.userId;
       })
     );
   }
