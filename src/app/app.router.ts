@@ -16,6 +16,7 @@ const routes: Routes = [
     path: 'logged',
     loadChildren: () =>
       import('./modules/logged/logged.module').then((m) => m.LoggedModule),
+    canActivate: [LoggedGuard],
   },
   {
     path: 'guest',

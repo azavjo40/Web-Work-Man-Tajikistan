@@ -148,11 +148,3 @@
     [isDelete]="true"
   ></app-swiper-example>
 </app-modal>
-
-<app-modal #modalError [isClose]="false" [isVisible]="isVisibleModal">
-  <app-login
-    (refreshLogin)="modalError.close(); getAdsUser()"
-    [isLogo]="false"
-    [isGoToHome]="true"
-  ></app-login>
-</app-modal>

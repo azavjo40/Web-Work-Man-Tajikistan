@@ -1,13 +1,5 @@
 import { Observable, Subscription } from 'rxjs';
-import { ModalComponent } from './../../../../shared/components/modal/modal.component';
-import {
-  Component,
-  OnInit,
-  ChangeDetectorRef,
-  ViewChild,
-  AfterViewInit,
-  OnDestroy,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Select } from '@ngxs/store';
@@ -21,13 +13,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./ads.component.scss'],
 })
 export class AdsComponent implements OnInit, OnDestroy {
-  @ViewChild('modalError', { static: false }) modalError!: ModalComponent;
   @Select(AppState.user) user$!: Observable<any>;
   private subscription$: Subscription = new Subscription();
   public apiUrl: string = environment.apiUrl;
   public user!: any;
   public userAds!: any;
-  public isVisibleModal = true;
   public cities = ['dushanbe', 'kulob', 'leninobod', 'kurgantepa'];
 
   public form: any = this.fb.group({
@@ -53,10 +43,8 @@ export class AdsComponent implements OnInit, OnDestroy {
         this.user = user;
         this.form.patchValue({ userId: this.user?._id });
         this.getAdsUser();
-        this.isVisibleModal = !this.form.value?.userId;
       })
     );
-    this.isVisibleModal = !this.form.value?.userId;
   }
 
   ngOnDestroy(): void {
@@ -89,8 +77,6 @@ export class AdsComponent implements OnInit, OnDestroy {
   }
 
   public getAdsUser() {
-    console.log(!this.user?._id);
-    if (!this.user?._id) return;
     this.appService
       .getAdsById(this.form.value.userId, false, true)
       .subscribe((item: any) => {

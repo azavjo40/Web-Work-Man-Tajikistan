@@ -9,7 +9,7 @@ export class LoggedGuard implements CanActivate {
   public canActivate(): boolean {
     const token = this.storageService.getToken();
     if (!token) {
-      this.router.navigateByUrl('/guest/home');
+      this.router.navigateByUrl('/auth/login');
       return false;
     }
     return true;
