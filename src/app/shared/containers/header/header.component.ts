@@ -1,3 +1,4 @@
+import { FormBuilder } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
@@ -21,15 +22,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public language: any = this.store.selectSnapshot(AppState.language) || 'tj';
   public languageLists: any = { ru: 'Русский', en: 'English', tj: 'Тоҷикӣ' };
 
+  public form = this.fb.group({
+    search: [null],
+  });
+
   constructor(
     private router: Router,
     private storageService: StorageService,
     private store: Store,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.refreshHeader();
+    this.form.valueChanges.subscribe(() => {
+      console.log(this.form.value.search);
+    });
   }
 
   ngOnDestroy(): void {

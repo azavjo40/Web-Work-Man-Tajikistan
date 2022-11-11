@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public form = this.fb.group({
     page: 1,
-    perPage: 20,
+    perPage: 30,
     isLoading: false,
   });
 

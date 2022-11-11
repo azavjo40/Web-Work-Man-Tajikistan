@@ -21,6 +21,7 @@ import { I18nModule } from '../modules/i18n/i18n.module';
 import { SpliceImagePipe } from './pipes/spliceImage.pipe';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
+import { SearchInputComponent } from './components/search-input/search-input.component';
 
 const components: any = [
   ButtonComponent,
@@ -33,6 +34,7 @@ const components: any = [
   LogoComponent,
   ChipsAutocomplete,
   TextareaComponent,
+  SearchInputComponent,
 ];
 
 const modals: any = [HeaderComponent];
